@@ -81,15 +81,15 @@
 
 
 
-<meta name="description" content="读书、健身、旅行、写作">
+<meta name="description" content="问题1hexo使用theme出现“ &#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro&#x2F;post.swig‘ as post_template %&#125;“问题  解决方案原因是hexo在5.0之后把swig给删除了需要自己手动安装 1npm i hexo-renderer-swig">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo使用theme出现报错">
-<meta property="og:url" content="https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8theme%E5%87%BA%E7%8E%B0%E6%8A%A5%E9%94%99/index.html">
+<meta property="og:url" content="https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8next%E6%8A%A5%E9%94%99/index.html">
 <meta property="og:site_name" content="haxianhe&#39;s blog">
-<meta property="og:description" content="读书、健身、旅行、写作">
+<meta property="og:description" content="问题1hexo使用theme出现“ &#123;% extends ‘_layout.swig‘ %&#125; &#123;% import ‘_macro&#x2F;post.swig‘ as post_template %&#125;“问题  解决方案原因是hexo在5.0之后把swig给删除了需要自己手动安装 1npm i hexo-renderer-swig">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-01-17T19:09:10.000Z">
-<meta property="article:modified_time" content="2024-01-17T19:08:21.167Z">
+<meta property="article:modified_time" content="2024-01-17T19:28:03.171Z">
 <meta property="article:author" content="haxianhe">
 <meta property="article:tag" content="环境问题">
 <meta name="twitter:card" content="summary">
@@ -133,7 +133,7 @@
 
 
 
-  <link rel="canonical" href="https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo使用theme出现报错/"/>
+  <link rel="canonical" href="https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo使用next报错/"/>
 
 
 
@@ -310,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8theme%E5%87%BA%E7%8E%B0%E6%8A%A5%E9%94%99/">
+    <link itemprop="mainEntityOfPage" href="https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8next%E6%8A%A5%E9%94%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -355,7 +355,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2024-01-18T03:08:21+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2024-01-18T03:28:03+08:00">
                 2024-01-18
               </time>
             
@@ -403,8 +403,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8theme%E5%87%BA%E7%8E%B0%E6%8A%A5%E9%94%99/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8theme%E5%87%BA%E7%8E%B0%E6%8A%A5%E9%94%99/" itemprop="commentCount"></span>
+                <a href="/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8next%E6%8A%A5%E9%94%99/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8next%E6%8A%A5%E9%94%99/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -431,7 +431,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  52
                 </span>
               
 
@@ -468,7 +468,13 @@
       
 
       
-        
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo使用theme出现“ &#123;% extends ‘_layout.swig‘ %&#125; &#123;% <span class="keyword">import</span> ‘_macro/post.swig‘ as post_template %&#125;“问题</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>原因是hexo在5.0之后把swig给删除了需要自己手动安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-swig</span><br></pre></td></tr></table></figure>
+
+
+
       
     </div>
     
@@ -496,7 +502,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8theme%E5%87%BA%E7%8E%B0%E6%8A%A5%E9%94%99/" title="hexo使用theme出现报错">https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8theme%E5%87%BA%E7%8E%B0%E6%8A%A5%E9%94%99/</a>
+    <a href="https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8next%E6%8A%A5%E9%94%99/" title="hexo使用theme出现报错">https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8next%E6%8A%A5%E9%94%99/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -593,8 +599,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -699,6 +714,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

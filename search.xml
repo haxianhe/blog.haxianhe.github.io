@@ -8532,8 +8532,14 @@
   </entry>
   <entry>
     <title>hexo使用theme出现报错</title>
-    <url>/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8theme%E5%87%BA%E7%8E%B0%E6%8A%A5%E9%94%99/</url>
-    <content><![CDATA[]]></content>
+    <url>/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8next%E6%8A%A5%E9%94%99/</url>
+    <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">hexo使用theme出现“ &#123;% extends ‘_layout.swig‘ %&#125; &#123;% <span class="keyword">import</span> ‘_macro/post.swig‘ as post_template %&#125;“问题</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>原因是hexo在5.0之后把swig给删除了需要自己手动安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm i hexo-renderer-swig</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
       <categories>
         <category>新人入门</category>
         <category>环境问题</category>

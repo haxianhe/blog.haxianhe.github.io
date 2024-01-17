@@ -1,4 +1,4 @@
-https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8theme%E5%87%BA%E7%8E%B0%E6%8A%A5%E9%94%99/
+https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8next%E6%8A%A5%E9%94%99/
 https://blog.haxianhe.com/2019/08/16/cs-newcomer/cs-newcomer-environment/MAC%E4%B8%8AGO%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/
 https://blog.haxianhe.com/2024/01/14/cs-basic/cs-basic-basic/cs-basic-basic-algorithm/0005%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/
 https://blog.haxianhe.com/2020/05/06/cs-basic/cs-basic-middleware/Redis-%E6%80%BB%E7%BB%93/
