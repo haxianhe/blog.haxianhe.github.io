@@ -6,7 +6,7 @@
   <link href="https://blog.haxianhe.com/atom.xml" rel="self"/>
   
   <link href="https://blog.haxianhe.com/"/>
-  <updated>2024-01-17T19:28:03.171Z</updated>
+  <updated>2024-01-17T19:28:16.068Z</updated>
   <id>https://blog.haxianhe.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8next%E6%8A%A5%E9%94%99/"/>
     <id>https://blog.haxianhe.com/2024/01/18/cs-newcomer/cs-newcomer-environment/hexo%E4%BD%BF%E7%94%A8next%E6%8A%A5%E9%94%99/</id>
     <published>2024-01-17T19:09:10.000Z</published>
-    <updated>2024-01-17T19:28:03.171Z</updated>
+    <updated>2024-01-17T19:28:16.068Z</updated>
     
     <content type="html"><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo使用theme出现“ &#123;% extends ‘_layout.swig‘ %&#125; &#123;% <span class="keyword">import</span> ‘_macro/post.swig‘ as post_template %&#125;“问题</span><br></pre></td></tr></table></figure><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>原因是hexo在5.0之后把swig给删除了需要自己手动安装</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i hexo-renderer-swig</span><br></pre></td></tr></table></figure>]]></content>
     
