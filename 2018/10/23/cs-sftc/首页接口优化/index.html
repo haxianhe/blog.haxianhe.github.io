@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="顺丰调度," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="haxianhe's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="问题概述在项目中写的一个下单程序的首页接口，涉及到查询商品分组、查询各个分组下的商品、查询商品的促销信息等多个环节的操作，最后在项目压测环节发现性能与预期相差巨大…单机TPS只有10，而目标至少100以上… 需要对首页接口进行优化。 问题梳理通过分析，该接口性能瓶颈主要在访问数据库的次数太多上面，所以本次优化的重点也在于如何降低数据库访问次数。 简单反思了一下为什么当初会写出一个性能这么差的接口(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="首页接口优化">
+<meta property="og:url" content="https://blog.haxianhe.com/2018/10/23/cs-sftc/%E9%A6%96%E9%A1%B5%E6%8E%A5%E5%8F%A3%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="haxianhe&#39;s blog">
+<meta property="og:description" content="问题概述在项目中写的一个下单程序的首页接口，涉及到查询商品分组、查询各个分组下的商品、查询商品的促销信息等多个环节的操作，最后在项目压测环节发现性能与预期相差巨大…单机TPS只有10，而目标至少100以上… 需要对首页接口进行优化。 问题梳理通过分析，该接口性能瓶颈主要在访问数据库的次数太多上面，所以本次优化的重点也在于如何降低数据库访问次数。 简单反思了一下为什么当初会写出一个性能这么差的接口(">
+<meta property="og:locale">
+<meta property="og:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9nxxrcuhj317e0faadl.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9nzivkpaj311m0giq6a.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9o2gb9afj31a60d6tbz.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9o3aygarj31c40sqafd.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwly1fu9ojqf2qij30vk03mq4b.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9olsh462j30vc08un07.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwly1fucq4f4flbj30qe03bdgo.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqa4s7xzj30l20a1dgk.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqagu7q1j31io0bmdhp.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqatp2spj30ln035js7.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqb2e9q6j30qm05075w.jpg">
+<meta property="article:published_time" content="2018-10-23T09:20:00.000Z">
+<meta property="article:modified_time" content="2024-01-17T18:05:05.092Z">
+<meta property="article:author" content="haxianhe">
+<meta property="article:tag" content="顺丰调度">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9nxxrcuhj317e0faadl.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.haxianhe.com/2018/10/23/cs-sftc/首页接口优化/"/>
+
+
+
+
+
+  <title>首页接口优化 | haxianhe's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">haxianhe's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">耐得住寂寞，才经得起繁华。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.haxianhe.com/2018/10/23/cs-sftc/%E9%A6%96%E9%A1%B5%E6%8E%A5%E5%8F%A3%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haxianhe's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">首页接口优化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-23T17:20:00+08:00">
+                2018-10-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-01-18T02:05:05+08:00">
+                2024-01-18
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%BA%E4%B8%B0%E8%B0%83%E5%BA%A6/" itemprop="url" rel="index">
+                    <span itemprop="name">顺丰调度</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/23/cs-sftc/%E9%A6%96%E9%A1%B5%E6%8E%A5%E5%8F%A3%E4%BC%98%E5%8C%96/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/10/23/cs-sftc/%E9%A6%96%E9%A1%B5%E6%8E%A5%E5%8F%A3%E4%BC%98%E5%8C%96/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="问题概述"><a href="#问题概述" class="headerlink" title="问题概述"></a>问题概述</h1><p>在项目中写的一个下单程序的首页接口，涉及到查询商品分组、查询各个分组下的商品、查询商品的促销信息等多个环节的操作，最后在项目压测环节发现性能与预期相差巨大…单机TPS只有10，而目标至少100以上…</p>
+<p>需要对首页接口进行优化。</p>
+<h1 id="问题梳理"><a href="#问题梳理" class="headerlink" title="问题梳理"></a>问题梳理</h1><p>通过分析，该接口性能瓶颈主要在访问数据库的次数太多上面，所以本次优化的重点也在于如何降低数据库访问次数。</p>
+<p>简单反思了一下为什么当初会写出一个性能这么差的接口(￣∇￣)：</p>
+<ul>
+<li>先组织数据结构后去数据库查询数据</li>
+<li>先组织数据结构后去其他方法&#x2F;RPC查询数据</li>
+<li>一句话概括，<strong>“将拼装数据的过程放到了查询数据之前进行”导致了这个问题</strong></li>
+</ul>
+<p>举个例子：</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9nxxrcuhj317e0faadl.jpg"></p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9nzivkpaj311m0giq6a.jpg"></p>
+<p>第一遍写的接口中，到处都充斥着这种例子。</p>
+<p>其实就是党哥说的那句：“<strong>不要在foreach中进行findRow、insert操作</strong>”，事实上，最好也不要在foreach中进行rpc调用、调用进行数据库操作的方法，这些都会让数据库访问次数增加。</p>
+<p><strong>道理都懂，但是没遇到问题之前总是不能感同身受。</strong></p>
+<h1 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h1><p>减少访问数据库次数，组装的操作尽量在内存中进行操作（ SQL 能用 in 操作尽量用 in 操作），查询的时候尽量批量操作（包括RPC）</p>
+<p>坚决不在 foreach 中进行 insert、findRow 操作。</p>
+<p>举个例子：</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9o2gb9afj31a60d6tbz.jpg"></p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9o3aygarj31c40sqafd.jpg"></p>
+<p>优化前，单次接口请求访问数据库250次以上（随着分类、商品、促销信息的增加访问数据库还会增加）。</p>
+<p>优化后，单次接口请求访问数据库11次（不变）。</p>
+<p>在开发环境中的性能对比：</p>
+<p>这是优化前的单次访问响应时间：</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwly1fu9ojqf2qij30vk03mq4b.jpg"></p>
+<p>36ms</p>
+<p>这是优化后的单次访问响应时间：</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9olsh462j30vc08un07.jpg"></p>
+<p>5ms</p>
+<p>上线之后，从log日志看，<strong>代码时间从1000ms降低到了30ms左右</strong>，问题来了，可是<strong>QA反馈的结果是响应时间依旧很长，优化有限</strong>。</p>
+<p>那么问题来了，问题出在哪里了？问题出在nginx上了。</p>
+<h1 id="nginx-参数调优"><a href="#nginx-参数调优" class="headerlink" title="nginx 参数调优"></a>nginx 参数调优</h1><p>在开始讲具体内容之前，先给出一组数据</p>
+<table>
+<thead>
+<tr>
+<th>代码优化前：</th>
+<th>代码优化后：</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>线下：代码时间 36ms</td>
+<td>线下：代码时间 5ms</td>
+</tr>
+<tr>
+<td>线上：代码时间 1000ms</td>
+<td>线上：代码时间 30ms</td>
+</tr>
+<tr>
+<td>线上：响应时间 1500ms</td>
+<td>线上：响应时间 450ms</td>
+</tr>
+</tbody></table>
+<p>看到了吗，代码优化后，影响时间只不过从1000多ms降低到了500左右ms，所以QA测的TPS从10个左右上升到了20个左右，所以就是优化效果有限，那么问题出在哪里呢？出在了nginx上，nginx处理时间过长，下面讲讲平哥修改的了哪些nginx参数，以及每个参数的作用。</p>
+<p>平哥改了nginx.conf的参数，如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwly1fucq4f4flbj30qe03bdgo.jpg"></p>
+<h2 id="fastcgi-buffer-size"><a href="#fastcgi-buffer-size" class="headerlink" title="fastcgi_buffer_size"></a>fastcgi_buffer_size</h2><table>
+<thead>
+<tr>
+<th>Syntax:</th>
+<th>fastcgi_buffer_size size;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Default:</td>
+<td>fastcgi_buffer_size 4k</td>
+</tr>
+<tr>
+<td>Context:</td>
+<td>http, server, location</td>
+</tr>
+</tbody></table>
+<p>Sets the size of the buffer used for reading the first part of the response received from the FastCGI server.</p>
+<p>This part usually contains a small response header. By default, the buffer size is equal to one memory page.</p>
+<p>This is either 4K or 8K, depending on a platform. It can be made smaller, however.</p>
+<p>后端服务器的响应头会放到fastcgi_buffer_size当中，这个大小默认等于fastcgi_buffers当中的设置单个缓冲区的大小。</p>
+<p>fastcgi_buffer_size只是响应头的缓冲区，没有必要也跟着设置太大。 fastcgi_buffer_size最好单独设置，一般设置个4k就够了。</p>
+<h2 id="fastcgi-buffers"><a href="#fastcgi-buffers" class="headerlink" title="fastcgi_buffers"></a>fastcgi_buffers</h2><table>
+<thead>
+<tr>
+<th>Syntax:</th>
+<th>fastcgi_buffers number size;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Default:</td>
+<td>fastcgi_buffers 8 4k</td>
+</tr>
+<tr>
+<td>Context:</td>
+<td>http, server, location</td>
+</tr>
+</tbody></table>
+<p>Sets the number and size of the buffers used for reading a response from the FastCGI server,</p>
+<p>for a single connection. By default, the buffer size is equal to one memory page.</p>
+<p>This is either 4K or 8K, depending on a platform.</p>
+<p>fastcgi_buffers的缓冲区大小一般会设置的比较大，以应付大网页。 fastcgi_buffers当中单个缓冲区的大小是由系统的内存页面大小决定的，Linux系统中一般为4k。 fastcgi_buffers由缓冲区数量和缓冲区大小组成的。总的大小为number*size。</p>
+<p>若某些请求的响应过大,则超过fastcgi_buffers的部分将被缓冲到硬盘(缓冲目录由_temp_path指令指定), 当然这将会使读取响应的速度减慢, 影响用户体验. 可以使用fastcgi_max_temp_file_size指令关闭磁盘缓冲.</p>
+<h2 id="fastcgi-busy-buffers-size"><a href="#fastcgi-busy-buffers-size" class="headerlink" title="fastcgi_busy_buffers_size"></a>fastcgi_busy_buffers_size</h2><table>
+<thead>
+<tr>
+<th>Syntax:</th>
+<th>fastcgi_busy_buffers_size size;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Default:</td>
+<td>fastcgi_busy_buffers_size 8k</td>
+</tr>
+<tr>
+<td>Context:</td>
+<td>http, server, location</td>
+</tr>
+</tbody></table>
+<p>When buffering of responses from the FastCGI server is enabled, limits the total size of buffers that can be busy sending a response to the client while the response is not yet fully read.</p>
+<p>In the meantime, the rest of the buffers can be used for reading the response and, if needed, buffering part of the response to a temporary file.</p>
+<p>By default, size is limited by the size of two buffers set by the fastcgi_buffer_sizeand fastcgi_buffers directives.</p>
+<p>fastcgi_busy_buffers_size不是独立的空间，它是fastcgi_buffers和fastcgi_buffer_size的一部分。nginx会在没有完全读完后端响应的时候就开始向客户端传送数据，</p>
+<p>所以它会划出一部分缓冲区来专门向客户端传送数据(这部分的大小是由fastcgi_busy_buffers_size来控制的，建议为fastcgi_buffers中单个缓冲区大小的2倍)，</p>
+<p>然后它继续从后端取数据，缓冲区满了之后就写到磁盘的临时文件中。</p>
+<h2 id="fastcgi-max-temp-file-size和fastcgi-temp-file-write-size"><a href="#fastcgi-max-temp-file-size和fastcgi-temp-file-write-size" class="headerlink" title="fastcgi_max_temp_file_size和fastcgi_temp_file_write_size"></a>fastcgi_max_temp_file_size和fastcgi_temp_file_write_size</h2><table>
+<thead>
+<tr>
+<th>Syntax:</th>
+<th>fastcgi_max_temp_file_size size;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Default:</td>
+<td>fastcgi_max_temp_file_size 1024m;</td>
+</tr>
+<tr>
+<td>Context:</td>
+<td>http, server, location</td>
+</tr>
+</tbody></table>
+<p>When buffering of responses from the FastCGI server is enabled, and the whole response does not fit into the buffers set by the fastcgi_buffer_size and fastcgi_buffers directives,</p>
+<p>a part of the response can be saved to a temporary file. This directive sets the maximum size of the temporary file.</p>
+<p>The size of data written to the temporary file at a time is set by the fastcgi_temp_file_write_size directive.</p>
+<p>The zero value disables buffering of responses to temporary files.</p>
+<p>This restriction does not apply to responses that will be cached or stored on disk.</p>
+<p>临时文件由fastcgi_max_temp_file_size和fastcgi_temp_file_write_size这两个指令决定。 fastcgi_temp_file_write_size是一次访问能写入的临时文件的大小，默认是fastcgi_buffer_size和proxy_buffers中设置的缓冲区大小的2倍，Linux下一般是8k。</p>
+<p>fastcgi_max_temp_file_size指定当响应内容大于proxy_buffers指定的缓冲区时, 写入硬盘的临时文件的大小. 如果超过了这个值, Nginx将与Proxy服务器同步的传递内容, 而不再缓冲到硬盘. 设置为0时, 则直接关闭硬盘缓冲.</p>
+<h2 id="fastcgi-buffering"><a href="#fastcgi-buffering" class="headerlink" title="fastcgi_buffering"></a>fastcgi_buffering</h2><table>
+<thead>
+<tr>
+<th>Syntax:</th>
+<th>fastcgi_buffering on &#x2F; off;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Default:</td>
+<td>fastcgi_buffering on;</td>
+</tr>
+<tr>
+<td>Context:</td>
+<td>http, server, location</td>
+</tr>
+</tbody></table>
+<p>Enables or disables buffering of responses from the FastCGI server.</p>
+<p>fastcgi_buffering这个参数用来控制是否打开后端响应内容的缓冲区，如果这个设置为off，那么fastcgi_buffers和fastcgi_busy_buffers_size这两个指令将会失效。但是无论fastcgi_buffering是否开启，对fastcgi_buffer_size都是生效的。</p>
+<p>fastcgi_buffering开启的情况下，nignx会把后端返回的内容先放到缓冲区当中，然后再返回给客户端(边收边传，不是全部接收完再传给客户端)。 临时文件由fastcgi_max_temp_file_size和fastcgi_temp_file_write_size这两个指令决定的。</p>
+<p>如果fastcgi_buffering关闭，那么nginx会立即把从后端收到的响应内容传送给客户端，每次取的大小为fastcgi_buffer_size的大小，这样效率肯定会比较低。</p>
+<p>注： fastcgi_buffering启用时，要提防使用的代理缓冲区太大。这可能会吃掉你的内存，限制代理能够支持的最大并发连接数。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h2><p>优化前的接口响应时间：1500ms&#x3D;1000+500</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqa4s7xzj30l20a1dgk.jpg"></p>
+<p>优化后的接口响应时间：107.20ms&#x3D;30+70</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqagu7q1j31io0bmdhp.jpg"></p>
+<p>优化前的接口TPS：10</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqatp2spj30ln035js7.jpg"></p>
+<p>优化后的接口TPS：124</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqb2e9q6j30qm05075w.jpg"></p>
+<p>优化前后在线下数据量比较少的时候后端代码处理时间相差7倍，在线上数据量多的时候后端代码处理时间相差30倍，可见随着数据的增加，代码质量的影响会更大。</p>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>这是工作以来，第一次遇到性能上的问题，从业务逻辑的角度来说，我一开始那么写一点问题都没有，存在问题的是性能方面，这也不正是在公司里面和在学校写代码的区别吗。</p>
+<p>在学校只要把代码写出来就行，不重视细节，不重视性能。但是在公司里面就不一样了，你不光要完成任务，还要完成的漂亮，因为你是直接面向用户的，如果你有bug，体验不好，那用户可不买单，最终吃亏的还是自己。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin.jpg" alt=" wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    haxianhe
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.haxianhe.com/2018/10/23/cs-sftc/%E9%A6%96%E9%A1%B5%E6%8E%A5%E5%8F%A3%E4%BC%98%E5%8C%96/" title="首页接口优化">https://blog.haxianhe.com/2018/10/23/cs-sftc/%E9%A6%96%E9%A1%B5%E6%8E%A5%E5%8F%A3%E4%BC%98%E5%8C%96/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E9%A1%BA%E4%B8%B0%E8%B0%83%E5%BA%A6/" rel="tag"># 顺丰调度</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/06/book-notes/book-notes-history/%E4%BA%BA%E7%B1%BB%E7%AE%80%E5%8F%B2/" rel="prev" title="故事的力量 - 读《人类简史》">
+                故事的力量 - 读《人类简史》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6262602f8ff817bd" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/me.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/haxianhe" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode.com/haxianhe/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://haxianhe.blog.csdn.net/" target="_blank" title="CSDN 博客">
+                      
+                        <i class="fa fa-fw fa-globe"></i>CSDN 博客</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6479220088" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:haxianhe@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">问题概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%A2%B3%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">问题梳理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">代码优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx-%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98"><span class="nav-number">4.</span> <span class="nav-text">nginx 参数调优</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fastcgi-buffer-size"><span class="nav-number">4.1.</span> <span class="nav-text">fastcgi_buffer_size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fastcgi-buffers"><span class="nav-number">4.2.</span> <span class="nav-text">fastcgi_buffers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fastcgi-busy-buffers-size"><span class="nav-number">4.3.</span> <span class="nav-text">fastcgi_busy_buffers_size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fastcgi-max-temp-file-size%E5%92%8Cfastcgi-temp-file-write-size"><span class="nav-number">4.4.</span> <span class="nav-text">fastcgi_max_temp_file_size和fastcgi_temp_file_write_size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fastcgi-buffering"><span class="nav-number">4.5.</span> <span class="nav-text">fastcgi_buffering</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94"><span class="nav-number">5.1.</span> <span class="nav-text">性能对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%83%E5%BE%97%E4%BD%93%E4%BC%9A"><span class="nav-number">5.2.</span> <span class="nav-text">心得体会</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haxianhe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">京ICP备2022024902号</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'x3LQVV31BNxPxyM01FLOYWXA-gzGzoHsz',
+        appKey: '07mqv7WlaHA0GH8dzulqpazf',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

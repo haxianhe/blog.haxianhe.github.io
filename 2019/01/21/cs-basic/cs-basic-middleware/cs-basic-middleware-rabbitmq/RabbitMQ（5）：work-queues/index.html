@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="rabbitmq," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="haxianhe's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="（using php-amqplib）  在上一个实例中（hello_word）我们写了两个程序，一个用于发送消息，一个用于接受消息。 在这个实例中，我们将完成一个在给多个消费者分配耗时任务的工作队列。 工作队列（又称：任务队列）背后的核心思想是尽量避免立即执行资源密集型任务、必须等待当前任务执行完成才能执行其他任务。取而代之的是，稍后调度这个任务。 我们将任务封装为消息，并且将它发送到队列中。一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RabbitMQ（5）：work_queues">
+<meta property="og:url" content="https://blog.haxianhe.com/2019/01/21/cs-basic/cs-basic-middleware/cs-basic-middleware-rabbitmq/RabbitMQ%EF%BC%885%EF%BC%89%EF%BC%9Awork-queues/index.html">
+<meta property="og:site_name" content="haxianhe&#39;s blog">
+<meta property="og:description" content="（using php-amqplib）  在上一个实例中（hello_word）我们写了两个程序，一个用于发送消息，一个用于接受消息。 在这个实例中，我们将完成一个在给多个消费者分配耗时任务的工作队列。 工作队列（又称：任务队列）背后的核心思想是尽量避免立即执行资源密集型任务、必须等待当前任务执行完成才能执行其他任务。取而代之的是，稍后调度这个任务。 我们将任务封装为消息，并且将它发送到队列中。一">
+<meta property="og:locale">
+<meta property="og:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNc79ly1fze80ctevqj3098033q30.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNc79gy1fzei65a8zqj30b0033jrk.jpg">
+<meta property="article:published_time" content="2019-01-21T13:01:17.000Z">
+<meta property="article:modified_time" content="2024-01-17T18:22:12.224Z">
+<meta property="article:author" content="haxianhe">
+<meta property="article:tag" content="rabbitmq">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNc79ly1fze80ctevqj3098033q30.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.haxianhe.com/2019/01/21/cs-basic/cs-basic-middleware/cs-basic-middleware-rabbitmq/RabbitMQ（5）：work-queues/"/>
+
+
+
+
+
+  <title>RabbitMQ（5）：work_queues | haxianhe's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">haxianhe's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">耐得住寂寞，才经得起繁华。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.haxianhe.com/2019/01/21/cs-basic/cs-basic-middleware/cs-basic-middleware-rabbitmq/RabbitMQ%EF%BC%885%EF%BC%89%EF%BC%9Awork-queues/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haxianhe's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">RabbitMQ（5）：work_queues</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-21T21:01:17+08:00">
+                2019-01-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-01-18T02:22:12+08:00">
+                2024-01-18
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%93%E4%B8%9A%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index">
+                    <span itemprop="name">专业知识</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%93%E4%B8%9A%E7%9F%A5%E8%AF%86/%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">中间件</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/21/cs-basic/cs-basic-middleware/cs-basic-middleware-rabbitmq/RabbitMQ%EF%BC%885%EF%BC%89%EF%BC%9Awork-queues/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/01/21/cs-basic/cs-basic-middleware/cs-basic-middleware-rabbitmq/RabbitMQ%EF%BC%885%EF%BC%89%EF%BC%9Awork-queues/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>（using <a href="https://github.com/php-amqplib/php-amqplib">php-amqplib</a>）</strong></p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNc79ly1fze80ctevqj3098033q30.jpg"></p>
+<p>在上一个实例中（hello_word）我们写了两个程序，一个用于发送消息，一个用于接受消息。</p>
+<p>在这个实例中，我们将完成一个在给多个消费者分配耗时任务的工作队列。</p>
+<p>工作队列（又称：任务队列）背后的<strong>核心思想</strong>是尽量避免立即执行资源密集型任务、必须等待当前任务执行完成才能执行其他任务。取而代之的是，稍后调度这个任务。</p>
+<p>我们将任务封装为消息，并且将它发送到队列中。一个在后台运行的工作进程将从队列中pop消息，并执行它。</p>
+<p>如果有多个消息消费者，所有任务将根据调度策略被分配给多个消息消费者。</p>
+<p>这个概念在web应用程序中特别有用，因为HTTP请求的窗口期很短无法用来处理复杂的任务。</p>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>在上一个实例（hello_world）中，我们发送了一个消息（Hello，World！）。现在我们将会发送一个字符串代表一个复杂任务。我们没有真实世界的任务，比如要调整大小的图片或者要渲染的pdf文件。所以我们通过使用sleep()函数来模拟这个任务。在这个任务中我们使用.来代表它的复杂程度，每一个.代表一秒的工作时间。</p>
+<p>我们稍微修改一下前面的send.php的代码。允许从命令行发送任意的消息。它将会将任务发到我们的工作队列，将它命名为new_task.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$data</span> = <span class="title function_ invoke__">implode</span>(<span class="string">&#x27; &#x27;</span>, <span class="title function_ invoke__">array_slice</span>(<span class="variable">$argv</span>, <span class="number">1</span>));</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">empty</span>(<span class="variable">$data</span>)) &#123;</span><br><span class="line">    <span class="variable">$data</span> = <span class="string">&quot;Hello World!&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$msg</span> = <span class="keyword">new</span> <span class="title class_">AMQPMessage</span>(<span class="variable">$data</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$channel</span>-&gt;<span class="title function_ invoke__">basic_publish</span>(<span class="variable">$msg</span>, <span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;hello&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27; [x] Sent &#x27;</span>, <span class="variable">$data</span>, <span class="string">&quot;\n&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>我们以前的<em>receive.php</em>脚本也需要一些改变；在消息体中每一个.将代表1秒的工作时间。这个程序将会从队列中弹出任务并执行这个任务。我们将其命名为<em>worker.php</em>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$callback = function ($msg) &#123;</span><br><span class="line">  echo &#x27; [x] Received &#x27;, $msg-&gt;body, &quot;\n&quot;;</span><br><span class="line">  sleep(substr_count($msg-&gt;body, &#x27;.&#x27;));</span><br><span class="line">  echo &quot; [x] Done\n&quot;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">$channel-&gt;basic_consume(&#x27;hello&#x27;, &#x27;&#x27;, false, true, false, false, $callback);</span><br></pre></td></tr></table></figure>
+
+<p>注意：我们模拟的任务模拟的是任务的执行的时间。</p>
+<p>在实例中执行：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># shell 1</span></span><br><span class="line">php worker.php</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># shell 2</span></span><br><span class="line">php new_task.php <span class="string">&quot;A very hard task which takes two seconds..&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="循环调度"><a href="#循环调度" class="headerlink" title="循环调度"></a>循环调度</h1><p>使用任务队列的一个优点就是能够轻松的并行工作。如果我们的任务执行压力增加，可以通过添加消费者的形式，轻松扩展。</p>
+<p>首先，我们同时运行两个worker.php脚本。它们都将从消息队列中获取消息，但究竟是怎样的？让我们来看一下。</p>
+<p>你需要打开三个命令行窗口，其中两个用来运行worker.php脚本。这两个命令行是我们的消费者C1和C2。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># shell 1</span></span><br><span class="line">php worker.php</span><br><span class="line"><span class="comment"># =&gt; [*] Waiting for messages. To exit press CTRL+C</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># shell 2</span></span><br><span class="line">php worker.php</span><br><span class="line"><span class="comment"># =&gt; [*] Waiting for messages. To exit press CTRL+C</span></span><br></pre></td></tr></table></figure>
+
+<p>在第三个命令行中我们将会发布新的消息。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># shell 3</span></span><br><span class="line">php new_task.php First message.</span><br><span class="line">php new_task.php Second message..</span><br><span class="line">php new_task.php Third message...</span><br><span class="line">php new_task.php Fourth message....</span><br><span class="line">php new_task.php Fifth message.....</span><br></pre></td></tr></table></figure>
+
+<p>让我们看看任务的调度情况:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># shell 1</span></span><br><span class="line">php worker.php</span><br><span class="line"><span class="comment"># =&gt; [*] Waiting for messages. To exit press CTRL+C</span></span><br><span class="line"><span class="comment"># =&gt; [x] Received &#x27;First message.&#x27;</span></span><br><span class="line"><span class="comment"># =&gt; [x] Received &#x27;Third message...&#x27;</span></span><br><span class="line"><span class="comment"># =&gt; [x] Received &#x27;Fifth message.....&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># shell 2</span></span><br><span class="line">php worker.php</span><br><span class="line"><span class="comment"># =&gt; [*] Waiting for messages. To exit press CTRL+C</span></span><br><span class="line"><span class="comment"># =&gt; [x] Received &#x27;Second message..&#x27;</span></span><br><span class="line"><span class="comment"># =&gt; [x] Received &#x27;Fourth message....&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>By default, RabbitMQ will send each message to the next consumer, in sequence. On average every consumer will get the same number of messages. This way of distributing messages is called round-robin. Try this out with three or more workers.</p>
+<h1 id="Message-acknowledgment"><a href="#Message-acknowledgment" class="headerlink" title="Message acknowledgment"></a>Message acknowledgment</h1><p>Doing a task can take a few seconds. You may wonder what happens if one of the consumers starts a long task and dies with it only partly done. With our current code, once RabbitMQ delivers a message to the customer it immediately marks it for deletion. In this case, if you kill a worker we will lose the message it was just processing. We’ll also lose all the messages that were dispatched to this particular worker but were not yet handled.</p>
+<p>But we don’t want to lose any tasks. If a worker dies, we’d like the task to be delivered to another worker.</p>
+<p>In order to make sure a message is never lost, RabbitMQ supports message acknowledgments. An ack(nowledgement) is sent back by the consumer to tell RabbitMQ that a particular message has been received, processed and that RabbitMQ is free to delete it.</p>
+<p>If a consumer dies (its channel is closed, connection is closed, or TCP connection is lost) without sending an ack, RabbitMQ will understand that a message wasn’t processed fully and will re-queue it. If there are other consumers online at the same time, it will then quickly redeliver it to another consumer. That way you can be sure that no message is lost, even if the workers occasionally die.</p>
+<p>There aren’t any message timeouts; RabbitMQ will redeliver the message when the consumer dies. It’s fine even if processing a message takes a very, very long time.</p>
+<p>Message acknowledgments are turned off by default. It’s time to turn them on by setting the fourth parameter to basic_consume to false (true means no ack) and send a proper acknowledgment from the worker, once we’re done with a task.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$callback</span> = <span class="function"><span class="keyword">function</span> (<span class="params"><span class="variable">$msg</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&#x27; [x] Received &#x27;</span>, <span class="variable">$msg</span>-&gt;body, <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">  <span class="title function_ invoke__">sleep</span>(<span class="title function_ invoke__">substr_count</span>(<span class="variable">$msg</span>-&gt;body, <span class="string">&#x27;.&#x27;</span>));</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot; [x] Done\n&quot;</span>;</span><br><span class="line">  <span class="variable">$msg</span>-&gt;delivery_info[<span class="string">&#x27;channel&#x27;</span>]-&gt;<span class="title function_ invoke__">basic_ack</span>(<span class="variable">$msg</span>-&gt;delivery_info[<span class="string">&#x27;delivery_tag&#x27;</span>]);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable">$channel</span>-&gt;<span class="title function_ invoke__">basic_consume</span>(<span class="string">&#x27;task_queue&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="variable">$callback</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Using this code we can be sure that even if you kill a worker using CTRL+C while it was processing a message, nothing will be lost. Soon after the worker dies all unacknowledged messages will be redelivered.</p>
+<p>Acknowledgement must be sent on the same channel the delivery it is for was received on. Attempts to acknowledge using a different channel will result in a channel-level protocol exception. See the doc guide on confirmations to learn more.</p>
+<h1 id="Message-durability"><a href="#Message-durability" class="headerlink" title="Message durability"></a>Message durability</h1><p>We have learned how to make sure that even if the consumer dies, the task isn’t lost. But our tasks will still be lost if RabbitMQ server stops.</p>
+<p>When RabbitMQ quits or crashes it will forget the queues and messages unless you tell it not to. Two things are required to make sure that messages aren’t lost: we need to mark both the queue and messages as durable.</p>
+<p>First, we need to make sure that RabbitMQ will never lose our queue. In order to do so, we need to declare it as durable. To do so we pass the third parameter to queue_declare as true:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$channel</span>-&gt;<span class="title function_ invoke__">queue_declare</span>(<span class="string">&#x27;hello&#x27;</span>, <span class="literal">false</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Although this command is correct by itself, it won’t work in our present setup. That’s because we’ve already defined a queue called hello which is not durable. RabbitMQ doesn’t allow you to redefine an existing queue with different parameters and will return an error to any program that tries to do that. But there is a quick workaround - let’s declare a queue with different name, for example task_queue:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$channel</span>-&gt;<span class="title function_ invoke__">queue_declare</span>(<span class="string">&#x27;task_queue&#x27;</span>, <span class="literal">false</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>This flag set to true needs to be applied to both the producer and consumer code.</p>
+<p>At this point we’re sure that the task_queue queue won’t be lost even if RabbitMQ restarts. Now we need to mark our messages as persistent - by setting the delivery_mode &#x3D; 2 message property which AMQPMessage takes as part of the property array.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$msg</span> = <span class="keyword">new</span> <span class="title class_">AMQPMessage</span>(</span><br><span class="line">    <span class="variable">$data</span>,</span><br><span class="line">    <span class="keyword">array</span>(<span class="string">&#x27;delivery_mode&#x27;</span> =&gt; <span class="title class_">AMQPMessage</span>::<span class="variable constant_">DELIVERY_MODE_PERSISTENT</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h1 id="Fair-dispatch"><a href="#Fair-dispatch" class="headerlink" title="Fair dispatch"></a>Fair dispatch</h1><p>You might have noticed that the dispatching still doesn’t work exactly as we want. For example in a situation with two workers, when all odd messages are heavy and even messages are light, one worker will be constantly busy and the other one will do hardly any work. Well, RabbitMQ doesn’t know anything about that and will still dispatch messages evenly.</p>
+<p>This happens because RabbitMQ just dispatches a message when the message enters the queue. It doesn’t look at the number of unacknowledged messages for a consumer. It just blindly dispatches every n-th message to the n-th consumer.</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNc79gy1fzei65a8zqj30b0033jrk.jpg"></p>
+<p>In order to defeat that we can use the basic_qos method with the prefetch_count &#x3D; 1 setting. This tells RabbitMQ not to give more than one message to a worker at a time. Or, in other words, don’t dispatch a new message to a worker until it has processed and acknowledged the previous one. Instead, it will dispatch it to the next worker that is not still busy.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$channel</span>-&gt;<span class="title function_ invoke__">basic_qos</span>(<span class="literal">null</span>, <span class="number">1</span>, <span class="literal">null</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="Putting-it-all-together"><a href="#Putting-it-all-together" class="headerlink" title="Putting it all together"></a>Putting it all together</h1><p>Final code of our new_task.php file:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">require_once __DIR__ . &#x27;/vendor/autoload.php&#x27;;</span><br><span class="line">use PhpAmqpLib\Connection\AMQPStreamConnection;</span><br><span class="line">use PhpAmqpLib\Message\AMQPMessage;</span><br><span class="line"></span><br><span class="line">$connection = new AMQPStreamConnection(&#x27;localhost&#x27;, 5672, &#x27;guest&#x27;, &#x27;guest&#x27;);</span><br><span class="line">$channel = $connection-&gt;channel();</span><br><span class="line"></span><br><span class="line">$channel-&gt;queue_declare(&#x27;task_queue&#x27;, false, true, false, false);</span><br><span class="line"></span><br><span class="line">$data = implode(&#x27; &#x27;, array_slice($argv, 1));</span><br><span class="line">if (empty($data)) &#123;</span><br><span class="line">    $data = &quot;Hello World!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">$msg = new AMQPMessage(</span><br><span class="line">    $data,</span><br><span class="line">    array(&#x27;delivery_mode&#x27; =&gt; AMQPMessage::DELIVERY_MODE_PERSISTENT)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">$channel-&gt;basic_publish($msg, &#x27;&#x27;, &#x27;task_queue&#x27;);</span><br><span class="line"></span><br><span class="line">echo &#x27; [x] Sent &#x27;, $data, &quot;\n&quot;;</span><br><span class="line"></span><br><span class="line">$channel-&gt;close();</span><br><span class="line">$connection-&gt;close();</span><br></pre></td></tr></table></figure>
+<p>(new_task.php source)</p>
+<p>And our worker.php:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require_once</span> <span class="keyword">__DIR__</span> . <span class="string">&#x27;/vendor/autoload.php&#x27;</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PhpAmqpLib</span>\<span class="title">Connection</span>\<span class="title">AMQPStreamConnection</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$connection</span> = <span class="keyword">new</span> <span class="title class_">AMQPStreamConnection</span>(<span class="string">&#x27;localhost&#x27;</span>, <span class="number">5672</span>, <span class="string">&#x27;guest&#x27;</span>, <span class="string">&#x27;guest&#x27;</span>);</span><br><span class="line"><span class="variable">$channel</span> = <span class="variable">$connection</span>-&gt;<span class="title function_ invoke__">channel</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable">$channel</span>-&gt;<span class="title function_ invoke__">queue_declare</span>(<span class="string">&#x27;task_queue&#x27;</span>, <span class="literal">false</span>, <span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot; [*] Waiting for messages. To exit press CTRL+C\n&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$callback</span> = <span class="function"><span class="keyword">function</span> (<span class="params"><span class="variable">$msg</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27; [x] Received &#x27;</span>, <span class="variable">$msg</span>-&gt;body, <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    <span class="title function_ invoke__">sleep</span>(<span class="title function_ invoke__">substr_count</span>(<span class="variable">$msg</span>-&gt;body, <span class="string">&#x27;.&#x27;</span>));</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot; [x] Done\n&quot;</span>;</span><br><span class="line">    <span class="variable">$msg</span>-&gt;delivery_info[<span class="string">&#x27;channel&#x27;</span>]-&gt;<span class="title function_ invoke__">basic_ack</span>(<span class="variable">$msg</span>-&gt;delivery_info[<span class="string">&#x27;delivery_tag&#x27;</span>]);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable">$channel</span>-&gt;<span class="title function_ invoke__">basic_qos</span>(<span class="literal">null</span>, <span class="number">1</span>, <span class="literal">null</span>);</span><br><span class="line"><span class="variable">$channel</span>-&gt;<span class="title function_ invoke__">basic_consume</span>(<span class="string">&#x27;task_queue&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="literal">false</span>, <span class="variable">$callback</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (<span class="title function_ invoke__">count</span>(<span class="variable">$channel</span>-&gt;callbacks)) &#123;</span><br><span class="line">    <span class="variable">$channel</span>-&gt;<span class="title function_ invoke__">wait</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$channel</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br><span class="line"><span class="variable">$connection</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br></pre></td></tr></table></figure>
+
+<p>(worker.php source)</p>
+<p>Using message acknowledgments and prefetch you can set up a work queue. The durability options let the tasks survive even if RabbitMQ is restarted.</p>
+<p>Now we can move on to tutorial 3 and learn how to deliver the same message to many consumers.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin.jpg" alt=" wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    haxianhe
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.haxianhe.com/2019/01/21/cs-basic/cs-basic-middleware/cs-basic-middleware-rabbitmq/RabbitMQ%EF%BC%885%EF%BC%89%EF%BC%9Awork-queues/" title="RabbitMQ（5）：work_queues">https://blog.haxianhe.com/2019/01/21/cs-basic/cs-basic-middleware/cs-basic-middleware-rabbitmq/RabbitMQ%EF%BC%885%EF%BC%89%EF%BC%9Awork-queues/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/rabbitmq/" rel="tag"># rabbitmq</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/18/cs-basic/cs-basic-middleware/cs-basic-middleware-rabbitmq/RabbitMQ%EF%BC%884%EF%BC%89%EF%BC%9A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" rel="next" title="RabbitMQ（4）：配置文件">
+                <i class="fa fa-chevron-left"></i> RabbitMQ（4）：配置文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/28/book-notes/book-notes-history/%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E5%8E%86%E5%8F%B2%E4%BA%BA%E7%89%A9-%E7%A7%A6%E5%A7%8B%E7%9A%87/" rel="prev" title="历史的功用 - 看《中国古代历史人物：秦始皇》">
+                历史的功用 - 看《中国古代历史人物：秦始皇》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6262602f8ff817bd" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/me.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/haxianhe" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode.com/haxianhe/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://haxianhe.blog.csdn.net/" target="_blank" title="CSDN 博客">
+                      
+                        <i class="fa fa-fw fa-globe"></i>CSDN 博客</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6479220088" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:haxianhe@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E8%B0%83%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">循环调度</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Message-acknowledgment"><span class="nav-number">3.</span> <span class="nav-text">Message acknowledgment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Message-durability"><span class="nav-number">4.</span> <span class="nav-text">Message durability</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fair-dispatch"><span class="nav-number">5.</span> <span class="nav-text">Fair dispatch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Putting-it-all-together"><span class="nav-number">6.</span> <span class="nav-text">Putting it all together</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haxianhe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">京ICP备2022024902号</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'x3LQVV31BNxPxyM01FLOYWXA-gzGzoHsz',
+        appKey: '07mqv7WlaHA0GH8dzulqpazf',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

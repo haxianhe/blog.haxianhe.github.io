@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面试晋升," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="haxianhe's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="我将我本次面试遇到的面试题整理成了一份面经，大家可以关注我的公众号【haxianhe】，回复 “面经” 领取。  一会儿就要办离职手续了，趁着这会儿没啥事，简单写一篇文章，分享一下自己的跳槽经验给大家，希望能对大家有所帮助。 个人经历我18年从华北电力大学毕业，毕业之后校招进入一家中小厂，这里就不提名字了。 工作了两年多了，这中间负责过单独的项目，设计过有深度的技术方案，也干过无脑的CRUD。 总">
+<meta property="og:type" content="article">
+<meta property="og:title" content="涨薪50%，从小厂逆袭快手 - 附面经">
+<meta property="og:url" content="https://blog.haxianhe.com/2021/02/27/cs-interview/%E6%B6%A8%E8%96%AA50%%EF%BC%8C%E4%BB%8E%E5%B0%8F%E5%8E%82%E9%80%86%E8%A2%AD%E5%BF%AB%E6%89%8B%20-%20%E9%99%84%E9%9D%A2%E7%BB%8F/index.html">
+<meta property="og:site_name" content="haxianhe&#39;s blog">
+<meta property="og:description" content="我将我本次面试遇到的面试题整理成了一份面经，大家可以关注我的公众号【haxianhe】，回复 “面经” 领取。  一会儿就要办离职手续了，趁着这会儿没啥事，简单写一篇文章，分享一下自己的跳槽经验给大家，希望能对大家有所帮助。 个人经历我18年从华北电力大学毕业，毕业之后校招进入一家中小厂，这里就不提名字了。 工作了两年多了，这中间负责过单独的项目，设计过有深度的技术方案，也干过无脑的CRUD。 总">
+<meta property="og:locale">
+<meta property="og:image" content="https://gitee.com/haxianhe/image/raw/master/image/20210226214946.png">
+<meta property="article:published_time" content="2021-02-27T05:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-17T18:09:04.994Z">
+<meta property="article:author" content="haxianhe">
+<meta property="article:tag" content="面试晋升">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/haxianhe/image/raw/master/image/20210226214946.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.haxianhe.com/2021/02/27/cs-interview/涨薪50%，从小厂逆袭快手 - 附面经/"/>
+
+
+
+
+
+  <title>涨薪50%，从小厂逆袭快手 - 附面经 | haxianhe's blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">haxianhe's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">耐得住寂寞，才经得起繁华。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.haxianhe.com/2021/02/27/cs-interview/%EF%BF%BD%EF%BF%BD50%25%0C%EF%BF%BD%0F%EF%BF%BD%06%EF%BF%BD%EF%BF%BDK%20-%20Db%EF%BF%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="haxianhe's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">涨薪50%，从小厂逆袭快手 - 附面经</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-27T13:00:00+08:00">
+                2021-02-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-01-18T02:09:04+08:00">
+                2024-01-18
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95%E6%99%8B%E5%8D%87/" itemprop="url" rel="index">
+                    <span itemprop="name">面试晋升</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/02/27/cs-interview/%EF%BF%BD%EF%BF%BD50%25%0C%EF%BF%BD%0F%EF%BF%BD%06%EF%BF%BD%EF%BF%BDK%20-%20Db%EF%BF%BD/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/02/27/cs-interview/%EF%BF%BD%EF%BF%BD50%25%0C%EF%BF%BD%0F%EF%BF%BD%06%EF%BF%BD%EF%BF%BDK%20-%20Db%EF%BF%BD/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o">本文总阅读量</i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我将我本次面试遇到的面试题整理成了一份面经，大家可以<strong>关注我的公众号【haxianhe】，回复 “面经” 领取</strong>。</p>
+<hr>
+<p>一会儿就要办离职手续了，趁着这会儿没啥事，简单写一篇文章，分享一下自己的跳槽经验给大家，希望能对大家有所帮助。</p>
+<h2 id="个人经历"><a href="#个人经历" class="headerlink" title="个人经历"></a>个人经历</h2><p>我18年从华北电力大学毕业，毕业之后校招进入一家中小厂，这里就不提名字了。</p>
+<p>工作了两年多了，这中间负责过单独的项目，设计过有深度的技术方案，也干过无脑的CRUD。</p>
+<p>总的来说这段经历让我收获了很多，让我从一名懵懂无知的学生成长为一个可以扛起事的社会人。</p>
+<p>因为还没有正式离职，很多东西就不具体说了，简单总结几点这期间的收获：</p>
+<p><strong>1.积累很重要</strong></p>
+<p>从入职的第一天起就应该养成一个积累笔记的好习惯，比如技术文档、线上问题、技术方案、线上总结、技术分享等等。这些内容的积累对于自己后面无论是提高工作效率（不走重复的路），还是晋升、面试都特别重要。</p>
+<p><strong>2.思考很重要,多想想我还能做什么</strong></p>
+<p>工作之后一定要养成“完成工作后多想想我还能做点什么”的习惯。需求实现很简单，那就考虑一下能不能加一个降级逻辑让功能更健壮，或者考虑一下除了当前实现方案，业内还有哪些比较成熟的实现方案，各自的优缺点各是什么等等，总之只要想做能做的事情很多很多。很多人都说自己一直在CRUD，但是究竟是你只能CRUD，还是你选择了CRUD呢，毕竟你做的更好也没有人会批评你。</p>
+<p><strong>3.把握住出现“线上问题”的机会</strong></p>
+<p>功能做了只是具备了项目经验，但是面试的时候真正“值钱”的其实是技术的难点与解决方案，而一般技术难点普遍伴随着“线上问题”。所以，平时工作中积极主动点，出现了线上问题不管是不是自己的都去查、去解决，事后围绕着“问题现象、问题分析、问题影响、解决方案、问题扩展”等去总结、记录到自己的笔记总，后续都是自己最宝贵的财富。</p>
+<h2 id="面试经验"><a href="#面试经验" class="headerlink" title="面试经验"></a>面试经验</h2><p>我是跨语言面的 Java 开发岗，前前后后面了很多一二线互联网公司，其中包括腾讯，阿里，字节、快手、美团、滴滴、微博等等，累计拿到了快手、微博、好未来等大小公司的offer，最后决定去快手了。</p>
+<p>下面概括性介绍一下我的面试经历，希望能对大家换工作的时候有所借鉴。</p>
+<p>首先在考虑好确实想要跳槽之后，可以从下面这几点着手准备面试复习：</p>
+<ul>
+<li>目标企业</li>
+<li>时间节点</li>
+<li>简历制作</li>
+<li>面试复习</li>
+<li>简历内推</li>
+<li>进行面试</li>
+<li>拿到offer</li>
+</ul>
+<p><strong>目标企业</strong></p>
+<p>如果经过仔细思考觉得自己确实想要面试换工作的话，那首先要考虑的就是自己的目标企业是什么，是去大公司当螺丝钉、还是去一个中小公司当万金油。</p>
+<p>也可以结合自己的领域知识进行选择，比如想做视频那就去抖音、快手、视频号，想做物流那就去顺丰、菜鸟、京东物流，想做娱乐内容那就去腾讯、字节、快手、微博，想做教育那就去猿辅导、作业帮、好未来。</p>
+<p><strong>时间节点</strong></p>
+<p>时间节点问题，包括面试时间点、离职时间点等。</p>
+<p>首先是面试时间点，你选择不同的时间节点去面试，拿到offer的难易程度完全不同。同一个岗位，不同时间点面试，难度和要求是不一样的，因为这要看缺人的程度和岗位HC的数量。</p>
+<p>一般两种情况下比较容易通过面试拿到offer：</p>
+<ol>
+<li>急着招人干活的时候 </li>
+<li>年底坑比较多的时候</li>
+</ol>
+<p>先来说说急着招人干活的情况，由于团队招人总是滞后于需求的，所以很多团队总是不定时的会出现“人不够用”的情况，每当这个时候由于急着找人进来干活所以对应聘者的要求也就没那么高。</p>
+<p>再就是年底的时候，由于每年年底各个团队都需要做来年的计划，所以这个时候普遍需要多招一些人进来做更多的事情。再就是年底的时候每个公司为了应对来年可能出现的人员流失，都会战略性的储备一些人。</p>
+<p>所以，综上如果有熟人联系你某个岗位急招人是比较好的机会，此外就是年底的时候换工作难度相对会小一些。</p>
+<p>如果你选择了年底离职，这个时候你就需要考虑你们公司的年终奖是什么时候发，你在哪个时间点离职，进而你也就知道了自己在哪个时间内面试、拿offer是最划算的了，毕竟出来打工都是为了赚钱，没有道理和钱过不去。</p>
+<p><strong>简历制作</strong></p>
+<p>这部分我推荐一篇阮一峰的文章给大家 </p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2020/01/technical-resume.html">如何写一份有效的技术简历？</a></li>
+</ul>
+<p>我这里简单给大家总结一下，有需要的人去看具体的文章内容。</p>
+<ul>
+<li>以项目为主体，设计你的简历</li>
+<li>针对企业的需要，突出你的技能</li>
+<li>项目的三要素（项目 &#x3D; 产品 + 技术 + 结果）</li>
+<li>量化你的项目，给出数字</li>
+</ul>
+<p><strong>面试复习</strong></p>
+<p>面试复习总体可以从下面这几个方面入手，大家可以参照着进行复习、准备，后续这块我会单独写一篇文章来进行分享，有兴趣的朋友可以关注一下我的公众号，也就这一两天。</p>
+<p><img src="https://gitee.com/haxianhe/image/raw/master/image/20210226214946.png"></p>
+<p><strong>简历内推</strong></p>
+<p>假设此时你已经有心仪的公司、简历也准备好了、面试复习也已经进行的差不多了，那么就可以开始找人内推简历了，但是注意不要一上来就试自己想去的公司（ps：你要是大神就当我没说…），建议先找两到三个公司试试水，比如你特别想去字节，那就可以先投递一下百度、滴滴、美团，面完之后根据自己的情况是再弥补弥补自己的不足还是去投递自己想去的公司。</p>
+<p>下面再介绍一下具体的内推渠道，一般来说有两个比较好的内推方式（ps：指的是技术人员）：</p>
+<ul>
+<li>熟人内推，联系自己在各个大厂的同学、校友、前同事等等，一般来说熟人的内推质量会比较高，通过的概率也会大一些。</li>
+<li>BOSS直聘，在上面有很多技术leader在找人，一般来找你的都是最近比较有找人需求的，质量也很高。</li>
+</ul>
+<p><strong>进行面试</strong></p>
+<p>关于进行面试有两点需要注意：</p>
+<ul>
+<li>面试时间，对于像字节、快手这种大小周的公司可以把面试时间约在周末他们上班的时候，其他的公司可以把面试时间约在工作日的晚上。</li>
+<li>面试节奏，不要短时间内高频面试，面试完需要反思、总结的，短时间高频面试会让你没有时间思考总结，面试质量没有提升不说，时间长了还会让你疲惫不堪，建议一周以一到两场面试为宜。</li>
+</ul>
+<p><strong>拿到offer</strong></p>
+<p>拿到offer之后主要就是配合背调，确定入职时间等，最重要的是要记得和上家公司和下家公司分别确定好社保缴纳问题，别断缴。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>简单介绍了一下过去几年工作中的几点心得，总结了一下过去几个月的面试阶段。</p>
+<p>后续还会写一篇文章介绍面试复习的具体内容，比如有哪些比较推荐的面试内容开源项目、我整理的mysql、redis、kafka等中间件的面试的面试复习笔记、如何通过自我介绍引导面试官进行提问等等。</p>
+<p>可能还会单开一篇文章介绍我是如何从PHP转的Java，讲讲社招如何转语言，说实话都说什么语言都一样，可是我遇到的除了字节之外就没有不看你语言的，所以也想以自己的亲身经历给大家介绍一下这方面如何去准备。</p>
+<hr>
+<p>此外，我还将我本次面试遇到的面试题整理成了一份面经，大家可以<strong>关注我的公众号【haxianhe】，回复 “面经” 领取</strong>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/weixin.jpg" alt=" wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    haxianhe
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.haxianhe.com/2021/02/27/cs-interview/%E6%B6%A8%E8%96%AA50%%EF%BC%8C%E4%BB%8E%E5%B0%8F%E5%8E%82%E9%80%86%E8%A2%AD%E5%BF%AB%E6%89%8B%20-%20%E9%99%84%E9%9D%A2%E7%BB%8F/" title="涨薪50%，从小厂逆袭快手 - 附面经">https://blog.haxianhe.com/2021/02/27/cs-interview/%E6%B6%A8%E8%96%AA50%%EF%BC%8C%E4%BB%8E%E5%B0%8F%E5%8E%82%E9%80%86%E8%A2%AD%E5%BF%AB%E6%89%8B%20-%20%E9%99%84%E9%9D%A2%E7%BB%8F/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E9%9D%A2%E8%AF%95%E6%99%8B%E5%8D%87/" rel="tag"># 面试晋升</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/02/21/think/%E8%AE%BA%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0%E6%96%B0%E7%9A%84%E6%8A%80%E8%83%BD/" rel="next" title="论如何学习新的技能">
+                <i class="fa fa-chevron-left"></i> 论如何学习新的技能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/03/04/cs-interview/%E4%BB%8E%E5%B0%8F%E5%8E%82%E9%80%86%E8%A2%AD%E5%BF%AB%E6%89%8B%EF%BC%8C%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E5%87%86%E5%A4%87%E9%9D%A2%E8%AF%95%E7%9A%84/" rel="prev" title="从小厂逆袭快手，我是如何准备面试的">
+                从小厂逆袭快手，我是如何准备面试的 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<div class="addthis_inline_share_toolbox">
+  <script type = "text/javascript" src = "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6262602f8ff817bd" async = "async" ></script>
+</div>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/me.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">98</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/haxianhe" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://leetcode.com/haxianhe/" target="_blank" title="LeetCode">
+                      
+                        <i class="fa fa-fw fa-globe"></i>LeetCode</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://haxianhe.blog.csdn.net/" target="_blank" title="CSDN 博客">
+                      
+                        <i class="fa fa-fw fa-globe"></i>CSDN 博客</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6479220088" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微博</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:haxianhe@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E7%BB%8F%E5%8E%86"><span class="nav-number">1.</span> <span class="nav-text">个人经历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E8%AF%95%E7%BB%8F%E9%AA%8C"><span class="nav-number">2.</span> <span class="nav-text">面试经验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">haxianhe</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">京ICP备2022024902号</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user">本站访客数</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye">本站总访问量</i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'x3LQVV31BNxPxyM01FLOYWXA-gzGzoHsz',
+        appKey: '07mqv7WlaHA0GH8dzulqpazf',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
