@@ -17,79 +17,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Go 学习资料</title>
-    <url>/2019/02/21/cs-development/Go-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%EF%BC%88%E8%B5%84%E6%96%99%EF%BC%89/</url>
-    <content><![CDATA[<p>本人最近刚刚经历了痛苦的入门过程，现想将自己的学习过程&amp;学习资料整理、分享给有需要的人。</p>
-<p><strong>最后更新时间：2019年8月14日</strong></p>
-<h1 id="Go-学习路径"><a href="#Go-学习路径" class="headerlink" title="Go 学习路径"></a>Go 学习路径</h1><p><strong>基础知识</strong></p>
-<ul>
-<li><a href="https://tour.golang.org/">官方教程</a></li>
-<li><a href="https://gobyexample.com/">Go By Example</a></li>
-<li><a href="https://geektutu.com/post/quick-golang.html">Go 语言简明教程</a></li>
-</ul>
-<p><strong>入门项目</strong></p>
-<ul>
-<li><a href="https://github.com/hoisie/web">实现路由</a></li>
-<li><a href="https://github.com/icub3d/home/">实现 API</a></li>
-</ul>
-<p><strong>进阶项目</strong></p>
-<ul>
-<li><a href="https://github.com/astaxie/beego">beego框架</a></li>
-<li><a href="https://www.docker.com/">docker</a></li>
-<li><a href="https://github.com/skynetservices/skynet-archive">分布式</a></li>
-<li><a href="https://github.com/etcd-io/etcd">分布式应用</a></li>
-</ul>
-<h1 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h1><ul>
-<li><a href="https://github.com/astaxie/build-web-application-with-golang">《Go Web 编程》开源项目</a></li>
-<li><a href="https://astaxie.gitbooks.io/build-web-application-with-golang/zh/">《Go Web 编程》在线阅读</a></li>
-</ul>
-<h1 id="交流社区"><a href="#交流社区" class="headerlink" title="交流社区"></a>交流社区</h1><ul>
-<li><a href="https://studygolang.com/">Go 语言中文网</a></li>
-<li><a href="https://www.golangtc.com/">Golang 中国</a></li>
-<li><a href="https://gocn.vip/">Go 中国技术社区</a></li>
-</ul>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><a href="https://www.zhihu.com/question/23486344/answer/24770195">怎么学习 Golang</a></li>
-<li><a href="https://github.com/Unknwon/go-study-index">go-study-index</a></li>
-<li><a href="https://www.processon.com/view/link/5a9ba4c8e4b0a9d22eb3bdf0#map">知识图谱</a></li>
-</ul>
-<hr>
-<p><a href="https://github.com/haxianhe/go-resource">本项目Github地址</a></p>
-<p>欢迎大家和我一起学习👍</p>
-<hr>
-]]></content>
-      <categories>
-        <category>发展规划</category>
-      </categories>
-      <tags>
-        <tag>发展规划</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Dcoker 学习资料</title>
-    <url>/2019/04/17/cs-development/Dcoker-%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</url>
-    <content><![CDATA[<p><strong>Docker 入门实例</strong></p>
-<ul>
-<li><a href="https://juejin.im/post/5cacbfd7e51d456e8833390c?utm_source=gold_browser_extension">30 分钟快速入门 Docker 教程</a></li>
-<li><a href="https://www.fengbohello.top/archives/go-env-docker">使用 Docker 镜像构建 GO 语言环境</a></li>
-</ul>
-<p><strong>Docker 文档</strong></p>
-<ul>
-<li><a href="https://docs.docker.com/engine/reference/commandline/tag/">官方文档</a></li>
-</ul>
-<p><strong>Docker 电子书</strong></p>
-<ul>
-<li><a href="https://yeasy.gitbooks.io/docker_practice/content/">Docker — 从入门到实践</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>发展规划</category>
-      </categories>
-      <tags>
-        <tag>发展规划</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>从小厂逆袭快手，我是如何从PHP转Java的</title>
     <url>/2021/04/21/cs-interview/%E4%BB%8E%E5%B0%8F%E5%8E%82%E9%80%86%E8%A2%AD%E5%BF%AB%E6%89%8B%EF%BC%8C%E6%88%91%E6%98%AF%E5%A6%82%E4%BD%95%E4%BB%8EPHP%E8%BD%ACJava%E7%9A%84/</url>
     <content><![CDATA[<p>我将我本次面试遇到的面试题整理成了一份面经，大家可以<strong>关注我的公众号【haxianhe】，回复 “面经” 领取</strong>。</p>
@@ -760,247 +687,6 @@
       </tags>
   </entry>
   <entry>
-    <title>编码习惯：在数据量较大的情况下</title>
-    <url>/2019/01/02/cs-sftc/%E7%BC%96%E7%A0%81%E4%B9%A0%E6%83%AF%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E9%87%8F%E8%BE%83%E5%A4%A7%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B/</url>
-    <content><![CDATA[<p>最近在负责项目的数据报表部分的工作。上一个月数据量增长的很快，也发现了自己报表代码中的几个由数据量过大引起的问题。现简单总结一下。</p>
-<h1 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h1><p>在实际业务当中经常会遇到一个模块通过rpc向另一个模块查询信息的情况。比如：</p>
-<ul>
-<li>根据商品id查询商品信息</li>
-<li>根据门店id查询门店信息</li>
-</ul>
-<p>这里有两点要注意：</p>
-<ol>
-<li>要批量查询信息，不要在foreach中进行信息查询</li>
-<li>在查询前要对id数组进行去重操作</li>
-</ol>
-<h1 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h1><p>因为报表是对一段时间的数据进行处理，数据量可能会比较大，所以一开始就要在关键位置进行分页操作。</p>
-<h1 id="不对空数组进行foreach"><a href="#不对空数组进行foreach" class="headerlink" title="不对空数组进行foreach"></a>不对空数组进行foreach</h1><p>在PHP中对空数组进行foreach操作会报warning。</p>
-<p>所以在对数组进行foreach执行要进行empty判断。</p>
-<h1 id="不要再foreach中进行rpc调用，数据库操作"><a href="#不要再foreach中进行rpc调用，数据库操作" class="headerlink" title="不要再foreach中进行rpc调用，数据库操作"></a>不要再foreach中进行rpc调用，数据库操作</h1><p>在接口调用的过程中，网络耗时要远大于内存中执行的操作的耗时。</p>
-<p>所以在模块与模块之间，模块与数据库之间，需要查询信息时，要通过批量的方式进行数据查询。</p>
-<ul>
-<li>模块与模块之间可以通过传数组参数进行数据查询</li>
-<li>在查库的时候，可以通过in操作进行数据查询</li>
-</ul>
-<p>注：千万不要在foreach中进行rpc调用，数据库操作，否则就是在给自己挖坑。</p>
-<h1 id="计算同类数据，使用相同的算法"><a href="#计算同类数据，使用相同的算法" class="headerlink" title="计算同类数据，使用相同的算法"></a>计算同类数据，使用相同的算法</h1><p>实现同样的功能，尽量去复用已经实现了这个功能的代码。</p>
-<p>如果实在不方便复用这部分代码，那也要保证使用相同的算法实现这部分逻辑。否则，就是在给自己挖坑。</p>
-]]></content>
-      <categories>
-        <category>顺丰调度</category>
-      </categories>
-      <tags>
-        <tag>顺丰调度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>首页接口优化</title>
-    <url>/2018/10/23/cs-sftc/%E9%A6%96%E9%A1%B5%E6%8E%A5%E5%8F%A3%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h1 id="问题概述"><a href="#问题概述" class="headerlink" title="问题概述"></a>问题概述</h1><p>在项目中写的一个下单程序的首页接口，涉及到查询商品分组、查询各个分组下的商品、查询商品的促销信息等多个环节的操作，最后在项目压测环节发现性能与预期相差巨大…单机TPS只有10，而目标至少100以上…</p>
-<p>需要对首页接口进行优化。</p>
-<h1 id="问题梳理"><a href="#问题梳理" class="headerlink" title="问题梳理"></a>问题梳理</h1><p>通过分析，该接口性能瓶颈主要在访问数据库的次数太多上面，所以本次优化的重点也在于如何降低数据库访问次数。</p>
-<p>简单反思了一下为什么当初会写出一个性能这么差的接口(￣∇￣)：</p>
-<ul>
-<li>先组织数据结构后去数据库查询数据</li>
-<li>先组织数据结构后去其他方法&#x2F;RPC查询数据</li>
-<li>一句话概括，<strong>“将拼装数据的过程放到了查询数据之前进行”导致了这个问题</strong></li>
-</ul>
-<p>举个例子：</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9nxxrcuhj317e0faadl.jpg"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9nzivkpaj311m0giq6a.jpg"></p>
-<p>第一遍写的接口中，到处都充斥着这种例子。</p>
-<p>其实就是党哥说的那句：“<strong>不要在foreach中进行findRow、insert操作</strong>”，事实上，最好也不要在foreach中进行rpc调用、调用进行数据库操作的方法，这些都会让数据库访问次数增加。</p>
-<p><strong>道理都懂，但是没遇到问题之前总是不能感同身受。</strong></p>
-<h1 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h1><p>减少访问数据库次数，组装的操作尽量在内存中进行操作（ SQL 能用 in 操作尽量用 in 操作），查询的时候尽量批量操作（包括RPC）</p>
-<p>坚决不在 foreach 中进行 insert、findRow 操作。</p>
-<p>举个例子：</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9o2gb9afj31a60d6tbz.jpg"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9o3aygarj31c40sqafd.jpg"></p>
-<p>优化前，单次接口请求访问数据库250次以上（随着分类、商品、促销信息的增加访问数据库还会增加）。</p>
-<p>优化后，单次接口请求访问数据库11次（不变）。</p>
-<p>在开发环境中的性能对比：</p>
-<p>这是优化前的单次访问响应时间：</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwly1fu9ojqf2qij30vk03mq4b.jpg"></p>
-<p>36ms</p>
-<p>这是优化后的单次访问响应时间：</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9olsh462j30vc08un07.jpg"></p>
-<p>5ms</p>
-<p>上线之后，从log日志看，<strong>代码时间从1000ms降低到了30ms左右</strong>，问题来了，可是<strong>QA反馈的结果是响应时间依旧很长，优化有限</strong>。</p>
-<p>那么问题来了，问题出在哪里了？问题出在nginx上了。</p>
-<h1 id="nginx-参数调优"><a href="#nginx-参数调优" class="headerlink" title="nginx 参数调优"></a>nginx 参数调优</h1><p>在开始讲具体内容之前，先给出一组数据</p>
-<table>
-<thead>
-<tr>
-<th>代码优化前：</th>
-<th>代码优化后：</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>线下：代码时间 36ms</td>
-<td>线下：代码时间 5ms</td>
-</tr>
-<tr>
-<td>线上：代码时间 1000ms</td>
-<td>线上：代码时间 30ms</td>
-</tr>
-<tr>
-<td>线上：响应时间 1500ms</td>
-<td>线上：响应时间 450ms</td>
-</tr>
-</tbody></table>
-<p>看到了吗，代码优化后，影响时间只不过从1000多ms降低到了500左右ms，所以QA测的TPS从10个左右上升到了20个左右，所以就是优化效果有限，那么问题出在哪里呢？出在了nginx上，nginx处理时间过长，下面讲讲平哥修改的了哪些nginx参数，以及每个参数的作用。</p>
-<p>平哥改了nginx.conf的参数，如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwly1fucq4f4flbj30qe03bdgo.jpg"></p>
-<h2 id="fastcgi-buffer-size"><a href="#fastcgi-buffer-size" class="headerlink" title="fastcgi_buffer_size"></a>fastcgi_buffer_size</h2><table>
-<thead>
-<tr>
-<th>Syntax:</th>
-<th>fastcgi_buffer_size size;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Default:</td>
-<td>fastcgi_buffer_size 4k</td>
-</tr>
-<tr>
-<td>Context:</td>
-<td>http, server, location</td>
-</tr>
-</tbody></table>
-<p>Sets the size of the buffer used for reading the first part of the response received from the FastCGI server.</p>
-<p>This part usually contains a small response header. By default, the buffer size is equal to one memory page.</p>
-<p>This is either 4K or 8K, depending on a platform. It can be made smaller, however.</p>
-<p>后端服务器的响应头会放到fastcgi_buffer_size当中，这个大小默认等于fastcgi_buffers当中的设置单个缓冲区的大小。</p>
-<p>fastcgi_buffer_size只是响应头的缓冲区，没有必要也跟着设置太大。 fastcgi_buffer_size最好单独设置，一般设置个4k就够了。</p>
-<h2 id="fastcgi-buffers"><a href="#fastcgi-buffers" class="headerlink" title="fastcgi_buffers"></a>fastcgi_buffers</h2><table>
-<thead>
-<tr>
-<th>Syntax:</th>
-<th>fastcgi_buffers number size;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Default:</td>
-<td>fastcgi_buffers 8 4k</td>
-</tr>
-<tr>
-<td>Context:</td>
-<td>http, server, location</td>
-</tr>
-</tbody></table>
-<p>Sets the number and size of the buffers used for reading a response from the FastCGI server,</p>
-<p>for a single connection. By default, the buffer size is equal to one memory page.</p>
-<p>This is either 4K or 8K, depending on a platform.</p>
-<p>fastcgi_buffers的缓冲区大小一般会设置的比较大，以应付大网页。 fastcgi_buffers当中单个缓冲区的大小是由系统的内存页面大小决定的，Linux系统中一般为4k。 fastcgi_buffers由缓冲区数量和缓冲区大小组成的。总的大小为number*size。</p>
-<p>若某些请求的响应过大,则超过fastcgi_buffers的部分将被缓冲到硬盘(缓冲目录由_temp_path指令指定), 当然这将会使读取响应的速度减慢, 影响用户体验. 可以使用fastcgi_max_temp_file_size指令关闭磁盘缓冲.</p>
-<h2 id="fastcgi-busy-buffers-size"><a href="#fastcgi-busy-buffers-size" class="headerlink" title="fastcgi_busy_buffers_size"></a>fastcgi_busy_buffers_size</h2><table>
-<thead>
-<tr>
-<th>Syntax:</th>
-<th>fastcgi_busy_buffers_size size;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Default:</td>
-<td>fastcgi_busy_buffers_size 8k</td>
-</tr>
-<tr>
-<td>Context:</td>
-<td>http, server, location</td>
-</tr>
-</tbody></table>
-<p>When buffering of responses from the FastCGI server is enabled, limits the total size of buffers that can be busy sending a response to the client while the response is not yet fully read.</p>
-<p>In the meantime, the rest of the buffers can be used for reading the response and, if needed, buffering part of the response to a temporary file.</p>
-<p>By default, size is limited by the size of two buffers set by the fastcgi_buffer_sizeand fastcgi_buffers directives.</p>
-<p>fastcgi_busy_buffers_size不是独立的空间，它是fastcgi_buffers和fastcgi_buffer_size的一部分。nginx会在没有完全读完后端响应的时候就开始向客户端传送数据，</p>
-<p>所以它会划出一部分缓冲区来专门向客户端传送数据(这部分的大小是由fastcgi_busy_buffers_size来控制的，建议为fastcgi_buffers中单个缓冲区大小的2倍)，</p>
-<p>然后它继续从后端取数据，缓冲区满了之后就写到磁盘的临时文件中。</p>
-<h2 id="fastcgi-max-temp-file-size和fastcgi-temp-file-write-size"><a href="#fastcgi-max-temp-file-size和fastcgi-temp-file-write-size" class="headerlink" title="fastcgi_max_temp_file_size和fastcgi_temp_file_write_size"></a>fastcgi_max_temp_file_size和fastcgi_temp_file_write_size</h2><table>
-<thead>
-<tr>
-<th>Syntax:</th>
-<th>fastcgi_max_temp_file_size size;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Default:</td>
-<td>fastcgi_max_temp_file_size 1024m;</td>
-</tr>
-<tr>
-<td>Context:</td>
-<td>http, server, location</td>
-</tr>
-</tbody></table>
-<p>When buffering of responses from the FastCGI server is enabled, and the whole response does not fit into the buffers set by the fastcgi_buffer_size and fastcgi_buffers directives,</p>
-<p>a part of the response can be saved to a temporary file. This directive sets the maximum size of the temporary file.</p>
-<p>The size of data written to the temporary file at a time is set by the fastcgi_temp_file_write_size directive.</p>
-<p>The zero value disables buffering of responses to temporary files.</p>
-<p>This restriction does not apply to responses that will be cached or stored on disk.</p>
-<p>临时文件由fastcgi_max_temp_file_size和fastcgi_temp_file_write_size这两个指令决定。 fastcgi_temp_file_write_size是一次访问能写入的临时文件的大小，默认是fastcgi_buffer_size和proxy_buffers中设置的缓冲区大小的2倍，Linux下一般是8k。</p>
-<p>fastcgi_max_temp_file_size指定当响应内容大于proxy_buffers指定的缓冲区时, 写入硬盘的临时文件的大小. 如果超过了这个值, Nginx将与Proxy服务器同步的传递内容, 而不再缓冲到硬盘. 设置为0时, 则直接关闭硬盘缓冲.</p>
-<h2 id="fastcgi-buffering"><a href="#fastcgi-buffering" class="headerlink" title="fastcgi_buffering"></a>fastcgi_buffering</h2><table>
-<thead>
-<tr>
-<th>Syntax:</th>
-<th>fastcgi_buffering on &#x2F; off;</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Default:</td>
-<td>fastcgi_buffering on;</td>
-</tr>
-<tr>
-<td>Context:</td>
-<td>http, server, location</td>
-</tr>
-</tbody></table>
-<p>Enables or disables buffering of responses from the FastCGI server.</p>
-<p>fastcgi_buffering这个参数用来控制是否打开后端响应内容的缓冲区，如果这个设置为off，那么fastcgi_buffers和fastcgi_busy_buffers_size这两个指令将会失效。但是无论fastcgi_buffering是否开启，对fastcgi_buffer_size都是生效的。</p>
-<p>fastcgi_buffering开启的情况下，nignx会把后端返回的内容先放到缓冲区当中，然后再返回给客户端(边收边传，不是全部接收完再传给客户端)。 临时文件由fastcgi_max_temp_file_size和fastcgi_temp_file_write_size这两个指令决定的。</p>
-<p>如果fastcgi_buffering关闭，那么nginx会立即把从后端收到的响应内容传送给客户端，每次取的大小为fastcgi_buffer_size的大小，这样效率肯定会比较低。</p>
-<p>注： fastcgi_buffering启用时，要提防使用的代理缓冲区太大。这可能会吃掉你的内存，限制代理能够支持的最大并发连接数。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h2><p>优化前的接口响应时间：1500ms&#x3D;1000+500</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqa4s7xzj30l20a1dgk.jpg"></p>
-<p>优化后的接口响应时间：107.20ms&#x3D;30+70</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqagu7q1j31io0bmdhp.jpg"></p>
-<p>优化前的接口TPS：10</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqatp2spj30ln035js7.jpg"></p>
-<p>优化后的接口TPS：124</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqb2e9q6j30qm05075w.jpg"></p>
-<p>优化前后在线下数据量比较少的时候后端代码处理时间相差7倍，在线上数据量多的时候后端代码处理时间相差30倍，可见随着数据的增加，代码质量的影响会更大。</p>
-<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>这是工作以来，第一次遇到性能上的问题，从业务逻辑的角度来说，我一开始那么写一点问题都没有，存在问题的是性能方面，这也不正是在公司里面和在学校写代码的区别吗。</p>
-<p>在学校只要把代码写出来就行，不重视细节，不重视性能。但是在公司里面就不一样了，你不光要完成任务，还要完成的漂亮，因为你是直接面向用户的，如果你有bug，体验不好，那用户可不买单，最终吃亏的还是自己。</p>
-]]></content>
-      <categories>
-        <category>顺丰调度</category>
-      </categories>
-      <tags>
-        <tag>顺丰调度</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>全身分化</title>
-    <url>/2018/11/14/fit-notes/%E5%85%A8%E8%BA%AB%E5%88%86%E5%8C%96/</url>
-    <content><![CDATA[<h1 id="热身"><a href="#热身" class="headerlink" title="热身"></a>热身</h1><p>跑步、俯卧撑、拉胸、拉背</p>
-<h1 id="腿"><a href="#腿" class="headerlink" title="腿"></a>腿</h1><p>哑铃&#x2F;杠铃深蹲、哑铃&#x2F;杠铃硬拉、坐姿器械腿举、坐姿器械举腿、俯卧器械腿屈</p>
-<h1 id="胸"><a href="#胸" class="headerlink" title="胸"></a>胸</h1><p>杠铃&#x2F;哑铃卧推、杠铃&#x2F;上斜卧推、哑铃飞鸟、哑铃上斜飞鸟</p>
-<h1 id="背"><a href="#背" class="headerlink" title="背"></a>背</h1><p>引体向上、高位下拉、宽度动作三直臂下拉、哑铃划船、坐姿划船、屈腿硬拉、山羊挺身</p>
-<h1 id="二头肌"><a href="#二头肌" class="headerlink" title="二头肌"></a>二头肌</h1><p>哑铃交替弯举</p>
-<h1 id="三头肌"><a href="#三头肌" class="headerlink" title="三头肌"></a>三头肌</h1><p>双臂哑铃颈后臂屈伸</p>
-<h1 id="腹"><a href="#腹" class="headerlink" title="腹"></a>腹</h1><p>仰卧起坐（抱杠铃片、哑铃）</p>
-<h1 id="拉伸"><a href="#拉伸" class="headerlink" title="拉伸"></a>拉伸</h1><p>拉胸、拉背</p>
-<blockquote>
-<p>注：每个动作3x10</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>健身笔记</category>
-      </categories>
-      <tags>
-        <tag>健身笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2018 年终总结</title>
     <url>/2018/12/28/summary/2018%20%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>2018年发生了三件对我个人影响比较大的事情：<strong>一是考研失败，二是找工作，三是参加工作。</strong></p>
@@ -1364,117 +1050,6 @@
       </tags>
   </entry>
   <entry>
-    <title>保险配置总结</title>
-    <url>/2021/01/21/think/%E4%BF%9D%E9%99%A9%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h2 id="我的保险配置"><a href="#我的保险配置" class="headerlink" title="我的保险配置"></a>我的保险配置</h2><p>医保+(补充医疗险+好医保·长期医疗险)+(相互保+重疾险)</p>
-<p><img src="https://gitee.com/haxianhe/image/raw/master/image/20210121073447.png"></p>
-<p><strong>情况1:日常门诊看病</strong></p>
-<p>报销型：医保+团体补充医疗险 2万以内100%报销</p>
-<p><strong>情况2:住院手术</strong></p>
-<p>报销型：医保+好医保·长期医疗险 200万以内100%报销</p>
-<p><strong>情况3:重症疾病</strong></p>
-<p>报销型：医保+好医保·长期医疗险 400万以内100%报销</p>
-<p>给付型：相互保+重疾险 满足条件疾病给付30万+50万</p>
-<h2 id="亲人保险建议"><a href="#亲人保险建议" class="headerlink" title="亲人保险建议"></a>亲人保险建议</h2><p><img src="https://gitee.com/haxianhe/image/raw/master/image/20210121073805.png"></p>
-<p><strong>情况1:日常门诊看病</strong></p>
-<p>报销型：医保+<del>团体补充医疗险</del> 一般都不够起付线</p>
-<p><strong>情况2:住院手术</strong></p>
-<p>报销型：医保+好医保·长期医疗险 200万以内100%报销</p>
-<p><strong>情况3:重症疾病</strong></p>
-<p>报销型：医保+好医保·长期医疗险 400万以内100%报销</p>
-<p>给付型：相互保+<del>重疾险</del> 满足条件疾病给付30万+<del>50万</del></p>
-<h2 id="保险介绍"><a href="#保险介绍" class="headerlink" title="保险介绍"></a>保险介绍</h2><h3 id="医保"><a href="#医保" class="headerlink" title="医保"></a>医保</h3><p>中国公民基本医疗福利，每个人必须有</p>
-<p><strong>特点：有起付线，门诊、住院报销金额有上限</strong></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>门诊起付线</th>
-<th>门诊报销上限</th>
-<th>住院起付线</th>
-<th>住院报销上限</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>职工医保</td>
-<td>1800</td>
-<td>2万</td>
-<td>1300</td>
-<td>30万</td>
-</tr>
-<tr>
-<td>新农合</td>
-<td>-</td>
-<td>5000</td>
-<td>-</td>
-<td>1.1万</td>
-</tr>
-</tbody></table>
-<p><img src="https://gitee.com/haxianhe/image/raw/master/image/6F84D5B5-F236-4AE2-9A81-9AC256B9F5C2.png"></p>
-<p><img src="https://gitee.com/haxianhe/image/raw/master/image/20210121074756.png"></p>
-<p><img src="https://gitee.com/haxianhe/image/raw/master/image/20210121074913.png"></p>
-<p><img src="https://gitee.com/haxianhe/image/raw/master/image/20210121075447.png"></p>
-<h3 id="团体补充医疗险"><a href="#团体补充医疗险" class="headerlink" title="团体补充医疗险"></a>团体补充医疗险</h3><p>特点：企业团体险，个人不知道怎么买，可以报销门诊没有达到医保起付线部分，以及起付线以上医保不报部分</p>
-<p><img src="https://gitee.com/haxianhe/image/raw/master/image/B655CFA7-A3F8-45B9-AF83-842358540EC9.png"></p>
-<h3 id="好医保·长期医疗险"><a href="#好医保·长期医疗险" class="headerlink" title="好医保·长期医疗险"></a>好医保·长期医疗险</h3><p>特点：报销型，可以在支付宝上买，60周岁以下可以投保，按年续费，年龄大交的钱会多一点，可以报销住院费医保不报的部分，6年内共计1万免赔额，普通疾病上限200万，重症上限400万，需要保证自己符合投保条件否组理赔的时候会被拒赔</p>
-<h3 id="相互保（给付型）"><a href="#相互保（给付型）" class="headerlink" title="相互保（给付型）"></a>相互保（给付型）</h3><p>特点：给付型，可以在支付宝上买，每月1元左右，患有清单上的疾病一次性给付30万（49周岁以前，49周岁到59周岁是10万），需要保证自己符合投保条件否组理赔的时候会被拒赔</p>
-<h3 id="重疾险（给付两全型）"><a href="#重疾险（给付两全型）" class="headerlink" title="重疾险（给付两全型）"></a>重疾险（给付两全型）</h3><p>特点：保到65周岁（过程赔付或到期一次返现），年龄大了没有必要买</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><table>
-<thead>
-<tr>
-<th>保险名称</th>
-<th>保险类型</th>
-<th>购买条件</th>
-<th>购买途径</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>职工医保</td>
-<td>报销型</td>
-<td>无</td>
-<td>社保</td>
-</tr>
-<tr>
-<td>新农合</td>
-<td>报销型</td>
-<td>无</td>
-<td>新农合</td>
-</tr>
-<tr>
-<td>团体补充医疗险</td>
-<td>报销型</td>
-<td>无</td>
-<td>无</td>
-</tr>
-<tr>
-<td>好医保·长期医疗险</td>
-<td>报销型</td>
-<td>60周岁以下，无既往病史</td>
-<td>支付宝</td>
-</tr>
-<tr>
-<td>相互保</td>
-<td>给付型</td>
-<td>无既往病史，两年内连续服药超过30天或者连续住院超过15天</td>
-<td>支付宝</td>
-</tr>
-<tr>
-<td>重疾险</td>
-<td>给付型</td>
-<td>略</td>
-<td>略</td>
-</tr>
-</tbody></table>
-<p>注意：购买好医保·长期医疗险和相互保之前，<strong>确认一下自己是否符合相应的投保条件（重点看一下免责条件&#x2F;健康要求）</strong>，这种产品都是<strong>“宽进严出”</strong>，不符合投保条件没人会告诉你，但是你理赔的时候就会给你拒赔，需要你<strong>自己对自己负责</strong>。</p>
-]]></content>
-      <categories>
-        <category>认知到位</category>
-      </categories>
-      <tags>
-        <tag>认知到位</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>回首往事，初心何在</title>
     <url>/2019/03/15/think/%E5%9B%9E%E9%A6%96%E5%BE%80%E4%BA%8B%EF%BC%8C%E5%88%9D%E5%BF%83%E4%BD%95%E5%9C%A8/</url>
     <content><![CDATA[<h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>今天在<em>极客时间</em>上看到了一篇文章，文章中作者讲述了他与程序员这个职业的缘起何方，读完文章之后我顺着作者的思路走了一遍我与程序员这个职业之间的缘分。</p>
@@ -1720,63 +1295,6 @@
       </tags>
   </entry>
   <entry>
-    <title>圆梦草原-达达线+热阿线</title>
-    <url>/2022/07/23/travel-notes/%E5%9C%86%E6%A2%A6%E8%8D%89%E5%8E%9F/</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>从大学的时候就一直想去 内蒙古 看一眼一样无垠的大草原，可惜拿了驾照之后一直也没机会练车，而去 内蒙古 大草原这种地方如果不是自驾的话就太麻烦了，所以一直也没去上。</p>
-<p>这次很偶然的，在公司内部旅游群看到冠廷在问有没人一起去草原玩，正好是周末就第一时间报名了。</p>
-<h2 id="出游计划"><a href="#出游计划" class="headerlink" title="出游计划"></a>出游计划</h2><p>（ps：该出游计划来自冠廷大佬，这里再次感谢冠廷大佬带大家玩耍～）</p>
-<p>7月16日（周六）<br>高铁G3665（ 北京 朝阳 - 赤峰 ） 10点-12:22<br>落地租车<br>赤峰 -热水塘镇（路过）-黄岗梁景区-阿斯哈图石阵景区（世界地质公园）【热阿线】<br>4’30&amp;amp;quot;  330km<br>宿  阿斯哈图附近</p>
-<p>7月17日（周日）<br>阿斯哈图-达里湖【达达线】- 赤峰<br>5’52&amp;amp;quot; 465km<br>高铁G3680（ 赤峰 - 北京 朝阳 ） 20:16-22:42<br>解散</p>
-<h2 id="D1-北京-赤峰-热阿线-阿斯哈图"><a href="#D1-北京-赤峰-热阿线-阿斯哈图" class="headerlink" title="D1 北京 - 赤峰 - 热阿线 - 阿斯哈图"></a>D1 北京 - 赤峰 - 热阿线 - 阿斯哈图</h2><p>早起8点多大家组队拼车来到了 北京 朝阳 站，到了之后时间刚刚好。</p>
-<p>12点多坐高铁到了 赤峰 之后，冠廷和越鸣分别取了车，由于我们有两个人核酸前一天出来的早，所以我们这车到附近的松山医院去做了核酸。然后我们去宴宾楼饭店和冠廷他们车汇合一起吃了出来的第一顿午饭。</p>
-<p>午饭点了很多当地特色的食物，但是不是很吃的惯，不过有两个女生很喜欢。</p>
-<p>第一次喝了大窑，有点甜～还挺好喝的。</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115113.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115132.png"></p>
-<p>吃过午饭，我们开始驱车往阿斯图赶，途径热水塘镇（路过）、黄岗梁景区，也就是走了一遍热阿线。</p>
-<p>这里还有个小插曲，越鸣我们车下了高速以后，我们以为我们在前面，所以在停车等后面这辆车，结果他们把我们超过了，我们等了大半天才发现，不过等的过程我们几个人拍了好看的合照。</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115152.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115207.png"></p>
-<p>远处的阳光洒下来也很美～</p>
-<p>发现我们被落在了后面之后，我们也出发踏上了热阿线。</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115226.png"></p>
-<p>路上渐渐的开始下起了雨，雨越下越大，手机也没了信号，能见度一度不足几米，有一种爱丽丝梦游仙境的奇幻感，事后回想起来格外舒爽。</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115246.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115300.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115312.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115325.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115339.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115350.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115404.png"></p>
-<p>终于在两位大佬高超车技的带领下，我们一行8人安全的来到我们此行的目的地阿斯哈图附近的一家民俗。</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115422.png"></p>
-<p>这里不得不这次夸赞一下冠廷大佬，大佬找的这家民宿远超我的预期。</p>
-<p>住的很舒服，吃的也十分对大家的胃口，吃的饱饱的。</p>
-<p>晚上大家玩了游戏，打了 德州 （我一如既然的输了😭），大家玩的很开心，彼此也更熟悉了些许。</p>
-<h2 id="D2-阿斯哈图-达达线-赤峰-北京"><a href="#D2-阿斯哈图-达达线-赤峰-北京" class="headerlink" title="D2 阿斯哈图 - 达达线 - 赤峰 - 北京"></a>D2 阿斯哈图 - 达达线 - 赤峰 - 北京</h2><p>早上下过雨，本来越鸣说爬山，我说你去吧，我穿拖鞋去不了，可是还是按耐不住对美丽景色的向往，穿着拖鞋爬了一段，上图中白色的房子就是我们住的民宿，体验相当好👍</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115459.png"></p>
-<p>早上9点半我们出发踏上了达达线，由于今天天气会好一点，终于看到了一望无垠的大草原。</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115521.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115535.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115552.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115608.png"></p>
-<p>在达里湖吃过午饭之后，彻底踏上了返程，高速上两位大佬还飙了一会儿车，更好笑的是对面车上的三位同学竟然都不知道，都在睡觉😂</p>
-<p>到了 赤峰 之后我们吃的思琴阿妈，中规中矩，也可能是大家略感疲惫不太饿。</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220723115633.png"></p>
-<p>吃完晚饭，我们就到高铁站还车，踏上了回 北京 的高铁。</p>
-<p>最后一段极美的视频来结束这段旅程。</p>
-<ul>
-<li>视频可以在马蜂窝看，<a href="http://www.mafengwo.cn/i/23778458.html">马蜂窝链接</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>旅行游记</category>
-      </categories>
-      <tags>
-        <tag>内蒙古</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>论如何学习新的技能</title>
     <url>/2021/02/21/think/%E8%AE%BA%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0%E6%96%B0%E7%9A%84%E6%8A%80%E8%83%BD/</url>
     <content><![CDATA[<p>今天晚上和泽康聊了一下春节期间的各自生活，有趣的是我们俩都列举了通过短时间快速学习做好一件事情的例子。</p>
@@ -1838,79 +1356,6 @@
       </categories>
       <tags>
         <tag>认知到位</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>眺望大海 - 大连之旅</title>
-    <url>/2022/08/05/travel-notes/%E7%9C%BA%E6%9C%9B%E5%A4%A7%E6%B5%B7/</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>上上周刚去了草原，回来之后就想去看看大海，吃吃海鲜，结果上周三中午的时茹萱大佬正好问问周末去不去大连，一拍即合！</p>
-<h2 id="出游计划"><a href="#出游计划" class="headerlink" title="出游计划"></a>出游计划</h2><p>三个人，分三个时间出发，时间参考意义不大，贴一下行程安排吧。</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805214218.png"></p>
-<p>ps：行程康教授安排的，再次感谢康教授！</p>
-<h2 id="D1-北京-大连-棒棰岛"><a href="#D1-北京-大连-棒棰岛" class="headerlink" title="D1 北京 - 大连 - 棒棰岛"></a>D1 北京 - 大连 - 棒棰岛</h2><p>我是周六早上从北京做的高铁去的大连，全程大概4个小时左右。</p>
-<p>有意思的是我这次做的这趟车和上次去赤峰的车是一个检票口，并且顺序也是紧挨着的，不得不再次感叹一下，世间之事的奇妙。</p>
-<p>走的前一天网上，希望不让我收拾东西，各种捣乱：<br><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805214621.png"></p>
-<p>大连北站：<br><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805215142.png"></p>
-<p>下车饥肠辘辘的去投奔茹萱大佬和康教授，虽然等的时间略长，但是第一顿吃的就有海鲜，还是很开心的。</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805221321.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805215433.png"></p>
-<p>口感还是很不错的👍</p>
-<p>吃完饭去了本次最满意的一个景点 —— 棒棰岛</p>
-<p>话不多说，上图：</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805215859.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805215841.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805215825.png"></p>
-<p>本场最佳文案：“海的那边，是敌人”</p>
-<p>除了美景之外，最开心的就是给两位大佬的拍照了，在两位高级班同学的赞扬声中，我愉快的拍着照。</p>
-<p>ps：这里也再一次的感谢康教授的指导。</p>
-<p>拍完照，哦不，看完棒棰岛我们就返回市里，去威尼斯水城看喷泉，结果没想到峰回路转喷泉没看到体验了一把夜晚的帆船！</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805220644.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805220709.png"></p>
-<p>苦海无边～</p>
-<p>上岸后，一起吃了鱿鱼歇息了一会儿，打车去吃了正黄旗烧烤，还挺好吃的👍</p>
-<p>由于第一天玩的太晚，所以回酒店之后5 10k活动被鸽了.鸽了..鸽了…</p>
-<p>一业无话</p>
-<h2 id="D2-牧场拍照-爱国主义教育-老友小聚-星海广场"><a href="#D2-牧场拍照-爱国主义教育-老友小聚-星海广场" class="headerlink" title="D2 牧场拍照 - 爱国主义教育 - 老友小聚 - 星海广场"></a>D2 牧场拍照 - 爱国主义教育 - 老友小聚 - 星海广场</h2><p>早上怀揣着满腔热血起床来到了酒店的健身房，结果被狠狠地打脸了，只有几台跑步机孤零零的摆在那里，想跑步我去海边跑不好吗？</p>
-<p>回房间洗了个澡之后来到楼下吃饭，结果又遇到了一个熊孩子，到处摸大家的食物，实在少兴，本来看到东北气息十足的酒店早餐的高兴劲没了一大半。</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805221427.png"></p>
-<p>早上大家打车来到了牧场，又开开心心的拍了一上午的照骗。</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805221713.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805221735.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805222116.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805221750.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805221820.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805221836.png"></p>
-<p>从牧场出来之后，我们打车来到了旅顺日俄监狱，看到了日俄对我们的先辈犯下的种种罪行，这份屈辱，我们中华儿女当永远牢记心中。</p>
-<p>落后就要挨打，只有我们的国家，我们的民族强大起来，重新屹立世界之巅，我们每一个普通的中国人才能真正过的幸福。</p>
-<p>过去几千年我们都是世界上最强大的霸主，不过近代这几百年才给了西方蛮夷以可乘之机罢了，早有周总理的为中华之崛起而读书，今有我们每一个人的为中华之冲顶而奋斗！</p>
-<p>从日俄监狱离开之后我们来到了军港，远远的眺望到了军舰。</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805222933.png"></p>
-<p>然后这个时候突然发现我的手、脖子、脸都被晒伤了…这真是智者千虑，必有一失。</p>
-<p>此时，我们已经累极，找了一家咖啡厅，休息了一下，环境还不错👍（也可能是听优秀的人聊天比较开心）</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805223112.png"></p>
-<p>后面晚上去和心语她们汇合一起吃了晚饭，也见到了心语的男朋友，很帅，和心语很般配👍</p>
-<p>回去的路上路过跨江大桥，在大桥上看到了星海广场，景色十分漂亮，于是我们让司机师傅带我们到了星海广场。</p>
-<p>我们租了一辆脚踏船，在海里漂了很长时间～很安静的感觉</p>
-<p>上岸后，我们又愉快的玩了碰碰车、飞椅、小跳楼机。</p>
-<p>不得不说累了一天，晚上玩这个真的很难控制情绪，吓得我哇哇大叫…不过还很开心怎么回事？</p>
-<p>最最最开心的，莫过于回到酒店之后终于把5 10 k活动给安排上了，最终大家打了一个小时之后平分秋色，各有千秋👍</p>
-<h2 id="D3-海上日出-海洋公园-大连-北京"><a href="#D3-海上日出-海洋公园-大连-北京" class="headerlink" title="D3 海上日出 - 海洋公园 - 大连 - 北京"></a>D3 海上日出 - 海洋公园 - 大连 - 北京</h2><p>回房间睡了一个睡眠周期之后，我成功的把大家叫起来去东港看了回海上日出🌄</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805224204.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805224228.png"></p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805224243.png"></p>
-<p>看完日出大家回酒店补了个觉。</p>
-<p>中午吃了饭之后去了海洋公园看海洋动物～</p>
-<p>全程没有兴致拍照，比较有趣的是海狮表演前的开场动画</p>
-<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/20220805224441.png"></p>
-<p>从海洋公园出来之后，就踏上了返程的列车。</p>
-<p>不得不说快乐的日子总是短暂的，每次出去玩完回来之后总是要适应两天。</p>
-<p><strong>PS：最后再次感谢本次旅行的发起者康教授以及为大家垫付开销的<br>茹萱大佬，是你们的辛勤付出让我能躺的更开心一点，感谢！！！</strong></p>
-]]></content>
-      <categories>
-        <category>旅行游记</category>
-      </categories>
-      <tags>
-        <tag>辽宁</tag>
       </tags>
   </entry>
   <entry>
@@ -8686,6 +8131,354 @@
       </categories>
       <tags>
         <tag>年终总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>编码习惯：在数据量较大的情况下</title>
+    <url>/2019/01/02/cs-business/%E7%BC%96%E7%A0%81%E4%B9%A0%E6%83%AF%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E9%87%8F%E8%BE%83%E5%A4%A7%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B/</url>
+    <content><![CDATA[<p>最近在负责项目的数据报表部分的工作。上一个月数据量增长的很快，也发现了自己报表代码中的几个由数据量过大引起的问题。现简单总结一下。</p>
+<h1 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h1><p>在实际业务当中经常会遇到一个模块通过rpc向另一个模块查询信息的情况。比如：</p>
+<ul>
+<li>根据商品id查询商品信息</li>
+<li>根据门店id查询门店信息</li>
+</ul>
+<p>这里有两点要注意：</p>
+<ol>
+<li>要批量查询信息，不要在foreach中进行信息查询</li>
+<li>在查询前要对id数组进行去重操作</li>
+</ol>
+<h1 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h1><p>因为报表是对一段时间的数据进行处理，数据量可能会比较大，所以一开始就要在关键位置进行分页操作。</p>
+<h1 id="不对空数组进行foreach"><a href="#不对空数组进行foreach" class="headerlink" title="不对空数组进行foreach"></a>不对空数组进行foreach</h1><p>在PHP中对空数组进行foreach操作会报warning。</p>
+<p>所以在对数组进行foreach执行要进行empty判断。</p>
+<h1 id="不要再foreach中进行rpc调用，数据库操作"><a href="#不要再foreach中进行rpc调用，数据库操作" class="headerlink" title="不要再foreach中进行rpc调用，数据库操作"></a>不要再foreach中进行rpc调用，数据库操作</h1><p>在接口调用的过程中，网络耗时要远大于内存中执行的操作的耗时。</p>
+<p>所以在模块与模块之间，模块与数据库之间，需要查询信息时，要通过批量的方式进行数据查询。</p>
+<ul>
+<li>模块与模块之间可以通过传数组参数进行数据查询</li>
+<li>在查库的时候，可以通过in操作进行数据查询</li>
+</ul>
+<p>注：千万不要在foreach中进行rpc调用，数据库操作，否则就是在给自己挖坑。</p>
+<h1 id="计算同类数据，使用相同的算法"><a href="#计算同类数据，使用相同的算法" class="headerlink" title="计算同类数据，使用相同的算法"></a>计算同类数据，使用相同的算法</h1><p>实现同样的功能，尽量去复用已经实现了这个功能的代码。</p>
+<p>如果实在不方便复用这部分代码，那也要保证使用相同的算法实现这部分逻辑。否则，就是在给自己挖坑。</p>
+]]></content>
+      <categories>
+        <category>业务思考</category>
+      </categories>
+      <tags>
+        <tag>业务思考</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>首页接口优化</title>
+    <url>/2018/10/23/cs-business/%E9%A6%96%E9%A1%B5%E6%8E%A5%E5%8F%A3%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="问题概述"><a href="#问题概述" class="headerlink" title="问题概述"></a>问题概述</h1><p>在项目中写的一个下单程序的首页接口，涉及到查询商品分组、查询各个分组下的商品、查询商品的促销信息等多个环节的操作，最后在项目压测环节发现性能与预期相差巨大…单机TPS只有10，而目标至少100以上…</p>
+<p>需要对首页接口进行优化。</p>
+<h1 id="问题梳理"><a href="#问题梳理" class="headerlink" title="问题梳理"></a>问题梳理</h1><p>通过分析，该接口性能瓶颈主要在访问数据库的次数太多上面，所以本次优化的重点也在于如何降低数据库访问次数。</p>
+<p>简单反思了一下为什么当初会写出一个性能这么差的接口(￣∇￣)：</p>
+<ul>
+<li>先组织数据结构后去数据库查询数据</li>
+<li>先组织数据结构后去其他方法&#x2F;RPC查询数据</li>
+<li>一句话概括，<strong>“将拼装数据的过程放到了查询数据之前进行”导致了这个问题</strong></li>
+</ul>
+<p>举个例子：</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9nxxrcuhj317e0faadl.jpg"></p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9nzivkpaj311m0giq6a.jpg"></p>
+<p>第一遍写的接口中，到处都充斥着这种例子。</p>
+<p>其实就是党哥说的那句：“<strong>不要在foreach中进行findRow、insert操作</strong>”，事实上，最好也不要在foreach中进行rpc调用、调用进行数据库操作的方法，这些都会让数据库访问次数增加。</p>
+<p><strong>道理都懂，但是没遇到问题之前总是不能感同身受。</strong></p>
+<h1 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h1><p>减少访问数据库次数，组装的操作尽量在内存中进行操作（ SQL 能用 in 操作尽量用 in 操作），查询的时候尽量批量操作（包括RPC）</p>
+<p>坚决不在 foreach 中进行 insert、findRow 操作。</p>
+<p>举个例子：</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9o2gb9afj31a60d6tbz.jpg"></p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9o3aygarj31c40sqafd.jpg"></p>
+<p>优化前，单次接口请求访问数据库250次以上（随着分类、商品、促销信息的增加访问数据库还会增加）。</p>
+<p>优化后，单次接口请求访问数据库11次（不变）。</p>
+<p>在开发环境中的性能对比：</p>
+<p>这是优化前的单次访问响应时间：</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwly1fu9ojqf2qij30vk03mq4b.jpg"></p>
+<p>36ms</p>
+<p>这是优化后的单次访问响应时间：</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fu9olsh462j30vc08un07.jpg"></p>
+<p>5ms</p>
+<p>上线之后，从log日志看，<strong>代码时间从1000ms降低到了30ms左右</strong>，问题来了，可是<strong>QA反馈的结果是响应时间依旧很长，优化有限</strong>。</p>
+<p>那么问题来了，问题出在哪里了？问题出在nginx上了。</p>
+<h1 id="nginx-参数调优"><a href="#nginx-参数调优" class="headerlink" title="nginx 参数调优"></a>nginx 参数调优</h1><p>在开始讲具体内容之前，先给出一组数据</p>
+<table>
+<thead>
+<tr>
+<th>代码优化前：</th>
+<th>代码优化后：</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>线下：代码时间 36ms</td>
+<td>线下：代码时间 5ms</td>
+</tr>
+<tr>
+<td>线上：代码时间 1000ms</td>
+<td>线上：代码时间 30ms</td>
+</tr>
+<tr>
+<td>线上：响应时间 1500ms</td>
+<td>线上：响应时间 450ms</td>
+</tr>
+</tbody></table>
+<p>看到了吗，代码优化后，影响时间只不过从1000多ms降低到了500左右ms，所以QA测的TPS从10个左右上升到了20个左右，所以就是优化效果有限，那么问题出在哪里呢？出在了nginx上，nginx处理时间过长，下面讲讲平哥修改的了哪些nginx参数，以及每个参数的作用。</p>
+<p>平哥改了nginx.conf的参数，如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwly1fucq4f4flbj30qe03bdgo.jpg"></p>
+<h2 id="fastcgi-buffer-size"><a href="#fastcgi-buffer-size" class="headerlink" title="fastcgi_buffer_size"></a>fastcgi_buffer_size</h2><table>
+<thead>
+<tr>
+<th>Syntax:</th>
+<th>fastcgi_buffer_size size;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Default:</td>
+<td>fastcgi_buffer_size 4k</td>
+</tr>
+<tr>
+<td>Context:</td>
+<td>http, server, location</td>
+</tr>
+</tbody></table>
+<p>Sets the size of the buffer used for reading the first part of the response received from the FastCGI server.</p>
+<p>This part usually contains a small response header. By default, the buffer size is equal to one memory page.</p>
+<p>This is either 4K or 8K, depending on a platform. It can be made smaller, however.</p>
+<p>后端服务器的响应头会放到fastcgi_buffer_size当中，这个大小默认等于fastcgi_buffers当中的设置单个缓冲区的大小。</p>
+<p>fastcgi_buffer_size只是响应头的缓冲区，没有必要也跟着设置太大。 fastcgi_buffer_size最好单独设置，一般设置个4k就够了。</p>
+<h2 id="fastcgi-buffers"><a href="#fastcgi-buffers" class="headerlink" title="fastcgi_buffers"></a>fastcgi_buffers</h2><table>
+<thead>
+<tr>
+<th>Syntax:</th>
+<th>fastcgi_buffers number size;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Default:</td>
+<td>fastcgi_buffers 8 4k</td>
+</tr>
+<tr>
+<td>Context:</td>
+<td>http, server, location</td>
+</tr>
+</tbody></table>
+<p>Sets the number and size of the buffers used for reading a response from the FastCGI server,</p>
+<p>for a single connection. By default, the buffer size is equal to one memory page.</p>
+<p>This is either 4K or 8K, depending on a platform.</p>
+<p>fastcgi_buffers的缓冲区大小一般会设置的比较大，以应付大网页。 fastcgi_buffers当中单个缓冲区的大小是由系统的内存页面大小决定的，Linux系统中一般为4k。 fastcgi_buffers由缓冲区数量和缓冲区大小组成的。总的大小为number*size。</p>
+<p>若某些请求的响应过大,则超过fastcgi_buffers的部分将被缓冲到硬盘(缓冲目录由_temp_path指令指定), 当然这将会使读取响应的速度减慢, 影响用户体验. 可以使用fastcgi_max_temp_file_size指令关闭磁盘缓冲.</p>
+<h2 id="fastcgi-busy-buffers-size"><a href="#fastcgi-busy-buffers-size" class="headerlink" title="fastcgi_busy_buffers_size"></a>fastcgi_busy_buffers_size</h2><table>
+<thead>
+<tr>
+<th>Syntax:</th>
+<th>fastcgi_busy_buffers_size size;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Default:</td>
+<td>fastcgi_busy_buffers_size 8k</td>
+</tr>
+<tr>
+<td>Context:</td>
+<td>http, server, location</td>
+</tr>
+</tbody></table>
+<p>When buffering of responses from the FastCGI server is enabled, limits the total size of buffers that can be busy sending a response to the client while the response is not yet fully read.</p>
+<p>In the meantime, the rest of the buffers can be used for reading the response and, if needed, buffering part of the response to a temporary file.</p>
+<p>By default, size is limited by the size of two buffers set by the fastcgi_buffer_sizeand fastcgi_buffers directives.</p>
+<p>fastcgi_busy_buffers_size不是独立的空间，它是fastcgi_buffers和fastcgi_buffer_size的一部分。nginx会在没有完全读完后端响应的时候就开始向客户端传送数据，</p>
+<p>所以它会划出一部分缓冲区来专门向客户端传送数据(这部分的大小是由fastcgi_busy_buffers_size来控制的，建议为fastcgi_buffers中单个缓冲区大小的2倍)，</p>
+<p>然后它继续从后端取数据，缓冲区满了之后就写到磁盘的临时文件中。</p>
+<h2 id="fastcgi-max-temp-file-size和fastcgi-temp-file-write-size"><a href="#fastcgi-max-temp-file-size和fastcgi-temp-file-write-size" class="headerlink" title="fastcgi_max_temp_file_size和fastcgi_temp_file_write_size"></a>fastcgi_max_temp_file_size和fastcgi_temp_file_write_size</h2><table>
+<thead>
+<tr>
+<th>Syntax:</th>
+<th>fastcgi_max_temp_file_size size;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Default:</td>
+<td>fastcgi_max_temp_file_size 1024m;</td>
+</tr>
+<tr>
+<td>Context:</td>
+<td>http, server, location</td>
+</tr>
+</tbody></table>
+<p>When buffering of responses from the FastCGI server is enabled, and the whole response does not fit into the buffers set by the fastcgi_buffer_size and fastcgi_buffers directives,</p>
+<p>a part of the response can be saved to a temporary file. This directive sets the maximum size of the temporary file.</p>
+<p>The size of data written to the temporary file at a time is set by the fastcgi_temp_file_write_size directive.</p>
+<p>The zero value disables buffering of responses to temporary files.</p>
+<p>This restriction does not apply to responses that will be cached or stored on disk.</p>
+<p>临时文件由fastcgi_max_temp_file_size和fastcgi_temp_file_write_size这两个指令决定。 fastcgi_temp_file_write_size是一次访问能写入的临时文件的大小，默认是fastcgi_buffer_size和proxy_buffers中设置的缓冲区大小的2倍，Linux下一般是8k。</p>
+<p>fastcgi_max_temp_file_size指定当响应内容大于proxy_buffers指定的缓冲区时, 写入硬盘的临时文件的大小. 如果超过了这个值, Nginx将与Proxy服务器同步的传递内容, 而不再缓冲到硬盘. 设置为0时, 则直接关闭硬盘缓冲.</p>
+<h2 id="fastcgi-buffering"><a href="#fastcgi-buffering" class="headerlink" title="fastcgi_buffering"></a>fastcgi_buffering</h2><table>
+<thead>
+<tr>
+<th>Syntax:</th>
+<th>fastcgi_buffering on &#x2F; off;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Default:</td>
+<td>fastcgi_buffering on;</td>
+</tr>
+<tr>
+<td>Context:</td>
+<td>http, server, location</td>
+</tr>
+</tbody></table>
+<p>Enables or disables buffering of responses from the FastCGI server.</p>
+<p>fastcgi_buffering这个参数用来控制是否打开后端响应内容的缓冲区，如果这个设置为off，那么fastcgi_buffers和fastcgi_busy_buffers_size这两个指令将会失效。但是无论fastcgi_buffering是否开启，对fastcgi_buffer_size都是生效的。</p>
+<p>fastcgi_buffering开启的情况下，nignx会把后端返回的内容先放到缓冲区当中，然后再返回给客户端(边收边传，不是全部接收完再传给客户端)。 临时文件由fastcgi_max_temp_file_size和fastcgi_temp_file_write_size这两个指令决定的。</p>
+<p>如果fastcgi_buffering关闭，那么nginx会立即把从后端收到的响应内容传送给客户端，每次取的大小为fastcgi_buffer_size的大小，这样效率肯定会比较低。</p>
+<p>注： fastcgi_buffering启用时，要提防使用的代理缓冲区太大。这可能会吃掉你的内存，限制代理能够支持的最大并发连接数。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h2><p>优化前的接口响应时间：1500ms&#x3D;1000+500</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqa4s7xzj30l20a1dgk.jpg"></p>
+<p>优化后的接口响应时间：107.20ms&#x3D;30+70</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqagu7q1j31io0bmdhp.jpg"></p>
+<p>优化前的接口TPS：10</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqatp2spj30ln035js7.jpg"></p>
+<p>优化后的接口TPS：124</p>
+<p><img src="https://raw.githubusercontent.com/haxianhe/pic/master/image/006tNbRwgy1fucqb2e9q6j30qm05075w.jpg"></p>
+<p>优化前后在线下数据量比较少的时候后端代码处理时间相差7倍，在线上数据量多的时候后端代码处理时间相差30倍，可见随着数据的增加，代码质量的影响会更大。</p>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>这是工作以来，第一次遇到性能上的问题，从业务逻辑的角度来说，我一开始那么写一点问题都没有，存在问题的是性能方面，这也不正是在公司里面和在学校写代码的区别吗。</p>
+<p>在学校只要把代码写出来就行，不重视细节，不重视性能。但是在公司里面就不一样了，你不光要完成任务，还要完成的漂亮，因为你是直接面向用户的，如果你有bug，体验不好，那用户可不买单，最终吃亏的还是自己。</p>
+]]></content>
+      <categories>
+        <category>业务思考</category>
+      </categories>
+      <tags>
+        <tag>业务思考</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于做自己</title>
+    <url>/2024/09/21/think/%E5%85%B3%E4%BA%8E%E5%81%9A%E8%87%AA%E5%B7%B1/</url>
+    <content><![CDATA[<p>好久没有更新自己的博客了，看了下，上次更新还是在24年1月23号。</p>
+<p>过去的这大半年，经历了很多事情，思考了很多，自己也有很大的成长，现在想做下做下总结，记录下来。</p>
+<h2 id="做自己"><a href="#做自己" class="headerlink" title="做自己"></a>做自己</h2><p>第一个话题，也是这篇文章的核心“关于做自己”，这么多年来一直有人在我的耳边和我说“做自己”这三个字，我也一直在想，什么是做自己，是给自己花钱是做自己？还是放纵自己是做自己？到底怎么才能做自己？这个问题困扰了我很久很久，以前一直想不明白，为什么别人那么容易就能做到的事情到了我这里这么难？想不明白为什么我越努力，越懂事，甚至做的远超出自己当初的期待，最后却这么痛苦，这么纠结，这么内耗，问题到底出现在哪里？</p>
+<p>在回答这个问题之前，先来回顾下我之前写的一篇博客<a href="https://blog.haxianhe.com/2020/01/14/book-notes/book-notes-psycholog/%E8%87%AA%E6%8E%A7%E5%8A%9B/">如何自控 - 读《自控力》</a> ,这是一篇关于《自控力》这本书的读后感，这本书对我启发还蛮大的，比如：</p>
+<ul>
+<li>人的大脑分为原始本能（本我）、自我意识（自我）、自控系统（超我）</li>
+</ul>
+<p>根据弗洛伊德的理论，我由本我、自我、超我三部分组成，其中：</p>
+<ol>
+<li><strong>本我</strong>，即潜意识、<strong>动物本能</strong>，位于眼眶后面区域的杏仁体周围，3岁之前形成。</li>
+<li><strong>超我</strong>，即道德层面的自我、<strong>自控系统</strong>，位于大脑皮层区域，有意识之后后天养成。</li>
+<li><strong>自我</strong>，由超我意识和潜意识融合而成，形成的<strong>自我意识</strong>。</li>
+</ol>
+<p>一直以来，我都以为不能做自己的人的问题出在了自我意识上，是由于超我和本我的割裂导致自我意识没有很好的形成导致的。最近发现其实问题可能出现在自控系统上了，先来回顾下自控系统的构成：</p>
+<p><strong>自控系统（意志力）</strong>主要由 <strong>我要做、我不要、我想要</strong> 组成。三种意志力类型概括了自控系统的三个核心方面，每一个方面对应着不同的自我控制需求。</p>
+<p>这三者相互关联，共同构成了完整的自控系统。例如，当你在做某个决定时，可能需要结合“我要做”和“我不要”来推动自己采取行动或抑制冲动，而“我想要”则会为你提供强大的内在动力和方向感。</p>
+<p>之前，我一直认为自己是具备“我想要”这个能力的，但是最近忽然想明白了，那真的是“我想要”吗？</p>
+<p>引用一段自己在微博写的话：</p>
+<blockquote>
+<p>其实从 18 年开始我就一直希望自己身上有个“靠谱”的标签（一方面是泽康身上的人格魅力吸引了我，另一方面是党哥给我一种感觉，沉稳的人更有未来），这些年我也是一直往这个方向努力的。但是最近忽然意识到有没有一种可能我天性就不是那种踏踏实实的性子，我就是一个很自由的人，我就是想一出是一出，我就是胆子大，脸皮厚，无所畏惧，敢于尝试。</p>
+</blockquote>
+<p>仔细数数从进工作组，到带项目，到去实习，到毕业找工作，到第一次跳槽，到第二次跳槽。哪一次也不是我有把握之后才去做的，都是“勇敢”在前面跑，“实力”在后面追。基于我够卷，够小心的性格，每次挑战也都有惊无险的度过了。也许这就是我的人格特质，真的不好吗？好像也没有那么不好，只是不符合主流价值观罢了，大家小时候都喜欢乖孩子，长大了都希望男人沉稳点，但是 why？ 这就是我啊！我为什么要为了别人的眼光舍弃自己的长处，选择自己的短处。</p>
+<blockquote>
+</blockquote>
+<p>写到这里我心里已经有答案了，原来我一直非常非常在意别人的看法，我希望家里人为我骄傲，所以我明明一年级以前那么调皮，那么“不乖”，但是自从上了二年级以后就仿佛变了一个人，再也不会因为和别的小朋友打架别人家长找到了家里，再也不会欺负别的小朋友，虽然还是不写作业但是我每次考试都要考第一第二，开始想着如何不让父母为我担心，开始“听”父母的话，开始“懂事”，去迎合父母的喜欢去做事情。从那个时候起，“我”就已经离我远去了。</p>
+<blockquote>
+</blockquote>
+<p>每个好朋友都和我说过一句“做自己”，今天我忽然意识到，也许“我”不是这一段两段感情中丢的，而是过去二十多年的家庭生活和校园生活中丢的。事情都有它的两面性，这种中式教育给了我一个更高的起点，但是如今当我作为一个独立的人进入社会之后，它限制了我去过的幸福，走向更高更远的地方。所以是时候找回“自我”了，毕竟这个社会衡量一个人看的不是他的短处有多短，而是看他的长处有多长，一个没有特点的人，不会被任何人看见包括他自己。</p>
+<p>我好像一直想要活成一个“对”的人，而不是活我自己。但是世间的事哪有什么对与错呀。可怜、可悲、可叹！！！</p>
+<p>再举个例子，我曾无数次尝试规划自己一天的24小时，精确到分，规划每天要做的每一个todo，再用图表去汇总展示，调整后续的计划。每次刚开始确实，效率拉满，但是用不上一周整个人就接近崩溃的状态，会极度的自责，会责怪自己，明明规划的那么好，为什么就做不到？就不能像一个机器人一样去执行吗？</p>
+<p>对，我就是这样，想要让自己去做“对”的事情，从来没有考虑“我想要”什么，也从来不能从当下体会到快乐。</p>
+<p>其实写到这里就很清楚了，<strong>我没有做自己的问题不是出现在自我意识这块，而是出现在自控系统这块，我的自控系统只有“我要做”、“我不要”，而没有“我想要”这部分</strong>。</p>
+<p>当我意识到这个问题之后，我开始发现，原来人不是一定要去做点什么才有意义，才可以开心快乐，如果我这会儿没有想做的事情，那就什么都不做，就那么呆着就好了，也可以很舒服。</p>
+<p><strong>以前的我就像鲨鱼一样，活着的意义就在于去做点什么，要是什么都不做，就会无法呼吸，就会死</strong>。</p>
+<p>比如，此刻，<strong>我想要</strong>把这段时间的感悟写下来，写到我的博客里，发到我的个人公众号上，所以我就会去做，而不是因为今天是周六，也不是因为我很长时间没有更新我的博客了所以我要去怎么怎么样。我们是人，我们要有自己的思想，我们要有想要做的事情，仅此而已。</p>
+<h2 id="关于思考"><a href="#关于思考" class="headerlink" title="关于思考"></a>关于思考</h2><p>其实这个问题的本质也是没有“做自己”导致的，这里重新整理下自己的思路。</p>
+<p>这件事情最开始让我眼前一亮是源于几个月前朋友的一句话，当时她说：“哈哈，你用三个词形容一下xxx（另一个朋友）”，我靠，我当时人都傻了，那一瞬间我整个人仿佛被雷击中了一样，大脑瞬间死机，因为我从来没有去想过别人是怎样的人，我仿佛是一个游荡在世间的NPC。那让我意识到，原来我一直没有思考，既没有思考人，也没有思考事。</p>
+<p>从那以后我开始逐个的盘我身边的人，包括很多已经不在身边的人是什么样的人，他们有什么特点等等。盘的过程中就发现，原来有些人从最开始就不是一路人，原来有些人自己没有被自己善待，原来某些人值得被自己更好的对待，是可以做一辈子的好朋友，很多事情一下子就清晰了起来。</p>
+<p>关于事情的思考也类似，这里就不展开了。</p>
+<h2 id="人生的意义"><a href="#人生的意义" class="headerlink" title="人生的意义"></a>人生的意义</h2><p>这个话题有点大哈，这里就随便聊聊。</p>
+<p>先扣一下文章的主题“做自己”，<strong>如果一个人都不是从“我想要”出发去活着的，那他也不存在什么人生意义，因为他从未活过</strong>，就是一具游荡在世间的尸体罢了。</p>
+<p>人如果要追寻生命的意义，那么前提他得是一个完整的人。进而他就会在自己与这个世界交互的过程中，做很多关于自己、关于这个世界的思考，也就是<strong>通过认识自己来认识世界，也通过认识世界来认识自己</strong>。<strong>也就形成了他的人生观、世界观，进而也就形成了他的价值观。</strong></p>
+<p>最后，想明白上面那些内容之后再去看这个世界，会感觉这个世界只有两种人，一种是自我觉醒了的人，一种是自我没有觉醒的人。怎么样都可以，毕竟这个五彩斑斓的世界这么大，容得下千奇百怪的我们。</p>
+]]></content>
+      <categories>
+        <category>认知到位</category>
+      </categories>
+      <tags>
+        <tag>认知到位</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Dcoker 学习资料</title>
+    <url>/2019/04/17/cs-newcomer/cs-development/Dcoker-%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/</url>
+    <content><![CDATA[<p><strong>Docker 入门实例</strong></p>
+<ul>
+<li><a href="https://juejin.im/post/5cacbfd7e51d456e8833390c?utm_source=gold_browser_extension">30 分钟快速入门 Docker 教程</a></li>
+<li><a href="https://www.fengbohello.top/archives/go-env-docker">使用 Docker 镜像构建 GO 语言环境</a></li>
+</ul>
+<p><strong>Docker 文档</strong></p>
+<ul>
+<li><a href="https://docs.docker.com/engine/reference/commandline/tag/">官方文档</a></li>
+</ul>
+<p><strong>Docker 电子书</strong></p>
+<ul>
+<li><a href="https://yeasy.gitbooks.io/docker_practice/content/">Docker — 从入门到实践</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>新人入门</category>
+        <category>学习资料</category>
+      </categories>
+      <tags>
+        <tag>学习资料</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Go 学习资料</title>
+    <url>/2019/02/21/cs-newcomer/cs-development/Go-%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF%EF%BC%88%E8%B5%84%E6%96%99%EF%BC%89/</url>
+    <content><![CDATA[<p>本人最近刚刚经历了痛苦的入门过程，现想将自己的学习过程&amp;学习资料整理、分享给有需要的人。</p>
+<p><strong>最后更新时间：2019年8月14日</strong></p>
+<h1 id="Go-学习路径"><a href="#Go-学习路径" class="headerlink" title="Go 学习路径"></a>Go 学习路径</h1><p><strong>基础知识</strong></p>
+<ul>
+<li><a href="https://tour.golang.org/">官方教程</a></li>
+<li><a href="https://gobyexample.com/">Go By Example</a></li>
+<li><a href="https://geektutu.com/post/quick-golang.html">Go 语言简明教程</a></li>
+</ul>
+<p><strong>入门项目</strong></p>
+<ul>
+<li><a href="https://github.com/hoisie/web">实现路由</a></li>
+<li><a href="https://github.com/icub3d/home/">实现 API</a></li>
+</ul>
+<p><strong>进阶项目</strong></p>
+<ul>
+<li><a href="https://github.com/astaxie/beego">beego框架</a></li>
+<li><a href="https://www.docker.com/">docker</a></li>
+<li><a href="https://github.com/skynetservices/skynet-archive">分布式</a></li>
+<li><a href="https://github.com/etcd-io/etcd">分布式应用</a></li>
+</ul>
+<h1 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h1><ul>
+<li><a href="https://github.com/astaxie/build-web-application-with-golang">《Go Web 编程》开源项目</a></li>
+<li><a href="https://astaxie.gitbooks.io/build-web-application-with-golang/zh/">《Go Web 编程》在线阅读</a></li>
+</ul>
+<h1 id="交流社区"><a href="#交流社区" class="headerlink" title="交流社区"></a>交流社区</h1><ul>
+<li><a href="https://studygolang.com/">Go 语言中文网</a></li>
+<li><a href="https://www.golangtc.com/">Golang 中国</a></li>
+<li><a href="https://gocn.vip/">Go 中国技术社区</a></li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://www.zhihu.com/question/23486344/answer/24770195">怎么学习 Golang</a></li>
+<li><a href="https://github.com/Unknwon/go-study-index">go-study-index</a></li>
+<li><a href="https://www.processon.com/view/link/5a9ba4c8e4b0a9d22eb3bdf0#map">知识图谱</a></li>
+</ul>
+<hr>
+<p><a href="https://github.com/haxianhe/go-resource">本项目Github地址</a></p>
+<p>欢迎大家和我一起学习👍</p>
+<hr>
+]]></content>
+      <categories>
+        <category>新人入门</category>
+        <category>学习资料</category>
+      </categories>
+      <tags>
+        <tag>学习资料</tag>
       </tags>
   </entry>
 </search>
